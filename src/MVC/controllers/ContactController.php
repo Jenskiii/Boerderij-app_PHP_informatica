@@ -3,8 +3,9 @@ class ContactController
 {
     public function contact(): void
     {
-        $title = "Contact Us";
-        $content = "This is the contact page. Here you can write details contact your company.";
+        // JS LINK
+        $jsLink = "form.js";
+
         require_once "../src/MVC/views/contact.php";
     }
 }

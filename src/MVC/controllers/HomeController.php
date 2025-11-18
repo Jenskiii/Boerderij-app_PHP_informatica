@@ -6,6 +6,9 @@ class HomeController
 {
     public function home(): void
     {
+        // JS LINK
+        $jsLink = "home.js";
+        
         // AUTOMAAT
         // get automaat vakken
         $vakModel = new AutomaatVak();

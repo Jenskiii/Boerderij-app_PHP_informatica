@@ -27,25 +27,11 @@
 
   <section>
     <div class="even_columns container">
-      <!-- CONTACT INFO -->
-      <div>
-        <h2>Contactgegevens</h2>
-        <p>
-          <strong>Kinderboerderij 't Erf</strong><br>
-          Mendelssohnstraat 6<br>
-          5144 GG Waalwijk
-        </p>
-        <p>
-          <strong>Telefoon:</strong> 0416 - 12 34 56<br>
-          <strong>E-mail:</strong> <a href="mailto:info@boerderij-erf.nl">info@kinderboerderij-erf.nl</a>
-        </p>
-        <h3>Openingstijden</h3>
-        <ul>
-          <li>maandag t/m vrijdag: 10:00 - 17:00</li>
-          <li>zaterdag t/m zondag: 10:00 - 16:30</li>
-        </ul>
-      </div>
 
+      <figure>
+        <img class="contact_donation-img" src="/assets/images/donate.png"
+          alt="Qr-code waarmee je kunt doneren aan de boerderij">
+      </figure>
 
       <!--
         ik zou hier bij een echte website de informatie van het form doorsturen
@@ -93,6 +79,38 @@
 
         <button class="btn primary | span_all" type="submit">Neem contact op</button>
       </form>
+  </section>
+
+  <section class="container flow">
+    <!-- CONTACT INFO -->
+
+    <h2 class="heading-2">Contactgegevens</h2>
+    <div class="contact_details">
+
+      <div>
+        <h3 class="heading-3">Kinderboerderij 't Erf</h3>
+        <ul>
+          <li><strong>Straat: </strong>Mendelssohnstraat 6</li>
+          <li><strong>Postcode: </strong>5144 GG Waalwijk</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="heading-3">Contact</h3>
+        <ul>
+          <li><strong>Telefoon: </strong> 0416 - 12 34 56 78</li>
+          <li><strong>Email: </strong> <a href="mailto:info@boerderij.nl"
+              class="navigation_link">info@kinderboerderij.nl</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="heading-3">Openingstijden</h3>
+        <ul>
+          <li><strong>maandag t/m vrijdag: </strong>10:00 - 17:00</li>
+          <li><strong>zaterdag t/m zondag: </strong>10:00 - 16:30</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
 

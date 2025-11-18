@@ -7,7 +7,7 @@ const pinClear = document.querySelector(".pin_clear");
 const pinAccept = document.querySelector(".pin_accept");
 const paymentAlert = document.querySelector(".automaat_alert");
 
-// FUNCTIONS
+////////// FUNCTIONS //////
 // reset pin
 function resetDisplay() {
   // set base value

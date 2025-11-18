@@ -16,9 +16,14 @@ session_start();
   <!-- links -->
   <!-- css -->
   <link rel="stylesheet" href="/assets/styles.css">
-  <!-- js -->
-  <script src="/assets/js/home.js" defer></script>
-  <script src="/assets/js/contact.js" defer></script>
+
+  <!-- dynamic js link -->
+  <?php
+  if (isset($jsLink)) {
+    echo "<script src='/assets/js/$jsLink' defer></script>";
+  }
+  ?>
+
   <title>Kinderboerderij t' Erf</title>
 </head>
 

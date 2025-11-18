@@ -52,7 +52,9 @@ form.addEventListener("submit", function (e) {
     persoonlijk buiten de scope van het project vallen.
     */
 
+    // reset form + return home
     form.reset();
+    window.location.href="/";
   } else {
     // if field is invalid focus on that element
     form.querySelector(":invalid").focus();
