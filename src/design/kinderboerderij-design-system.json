@@ -1,0 +1,50 @@
+{
+  "colorStyles": {
+    "Primary / Green": "#6BA539",
+    "Accent / Blue": "#24496E",
+    "Neutral / Text": "#444444",
+    "Background / White": "#FFFFFF",
+    "Muted / Light Gray": "#F2F2F2"
+  },
+  "textStyles": {
+    "Heading 1": {
+      "fontFamily": "Poppins",
+      "fontWeight": 700,
+      "fontSize": 40
+    },
+    "Heading 2": {
+      "fontFamily": "Poppins",
+      "fontWeight": 600,
+      "fontSize": 32
+    },
+    "Heading 3": {
+      "fontFamily": "Poppins",
+      "fontWeight": 500,
+      "fontSize": 24
+    },
+    "Body": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 400,
+      "fontSize": 16
+    },
+    "Small": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 400,
+      "fontSize": 14
+    }
+  },
+  "spacingTokens": {
+    "XS": 4,
+    "S": 8,
+    "M": 16,
+    "L": 24,
+    "XL": 40
+  },
+  "components": [
+    "Button (Primary, Secondary)",
+    "Navigation Bar (Logo, Menu, CTA)",
+    "Card (Image, Title, Button)",
+    "Form Inputs (Textfield, Button)",
+    "Footer (3 columns, socials)"
+  ]
+}
