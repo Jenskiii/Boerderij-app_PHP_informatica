@@ -23,15 +23,17 @@ function validateField(field) {
 }
 
 // remove red line after input is valid
-form.querySelectorAll("input, textarea").forEach((input) => {
-  input.addEventListener("blur", () => {
-    validateField(input);
+form.querySelectorAll("input, textarea").forEach((field) => {
+  field.addEventListener("blur", () => {
+    validateField(field);
+  });
+  field.addEventListener("input", () => {
+    validateField(field);
   });
 });
 
 /////// FORM ///////
 form.addEventListener("submit", function (e) {
-  e.preventDefault();
   let isValid = true;
 
   // Loop through all fields
@@ -43,8 +45,16 @@ form.addEventListener("submit", function (e) {
     }
   });
 
-  // FORM SUBMITTING WHEN VALID
-  if (isValid) {
+  // check for mistakes, if not = add e.preventDefault()
+  // this prevents buggs with multiple form
+  if (!isValid) {
+    form.querySelector(":invalid")?.focus();
+    e.preventDefault(); // blokkeer submit als er fouten zijn
+    return;
+  }
+
+  // Target contact form because i'm not handeling the form
+  if (form.id === "contactForm") {
     // submit form
     /*
     ik zou hier bij een echte website een link maken naar de email van de boerderij, 
@@ -54,12 +64,11 @@ form.addEventListener("submit", function (e) {
 
     // reset form + return home
     form.reset();
-    window.location.href="/";
-  } else {
-    // if field is invalid focus on that element
-    form.querySelector(":invalid").focus();
+    window.location.href = "/";
   }
 });
+
+
 
 // // remove error message if value is valid
 fields.forEach((field) => {

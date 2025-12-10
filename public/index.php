@@ -1,4 +1,7 @@
 <?php
+session_start();
+// import users
+require_once "../src/helpers/auth.php";
 require_once "../src/router/router.php";
 require_once "../src/MVC/controllers/HomeController.php";
 require_once "../src/MVC/controllers/ProductController.php";
@@ -7,37 +10,59 @@ require_once "../src/MVC/controllers/StatisticsController.php";
 require_once "../src/MVC/controllers/EntrepreneursController.php";
 require_once "../src/MVC/controllers/LoginController.php";
 require_once "../src/MVC/controllers/ContactController.php";
+require_once "../src/MVC/controllers/VakkenBeheerController.php";
 
+// AUTOMATICLY LOG OFF AFTER 15 MIN
+// 15 min timer
+$inactivity_time = 15 * 60;
+// Check if the last_timestamp is set
 
+// then unset $_SESSION variable & destroy session data
+if (isset($_SESSION['last_timestamp']) && time() - $_SESSION['last_timestamp'] > $inactivity_time) {
+  session_unset();
+  session_destroy();
+} else {
+  // Regenerate new session id and delete old one to prevent session fixation attack
+  session_regenerate_id(true);
+  // Update the last timestamp
+  $_SESSION['last_timestamp'] = time();
+}
+
+// PATHS
 // get URL
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-
-
 $router = new Router;
+
 // PAGE ROUTES
-// home
-$router->add("/", ["HomeController", "home"]);
+// HOME
+$router->add("/", ["HomeController", "home"], ["public"]);
 
-// about page
-$router->add("/over-ons", ["AboutController", "about"]);
+// ABOUT page
+$router->add("/over-ons", ["AboutController", "about"], ["public"]);
 
-// entrepreneurs page
-$router->add("/ondernemers", ["EntrepreneursController", "entrepreneurs"]);
+// ENTREPRENEURS page
+$router->add("/ondernemers", ["EntrepreneursController", "entrepreneurs"], ["public"]);
 
-// statistics page
-$router->add("/statistieken", ["StatisticsController", "statistics"]);
+// STATISTICS page
+$router->add("/statistieken", ["StatisticsController", "statistics"], ["admin"]);
 
-// login page
-$router->add("/login", ["LoginController", "login"]);
+// LOGIN page
+$router->add("/login", ["LoginController", "loginForm"], ["public"]);
+// login validate
+$router->add("/login/validate", ["LoginController", "validate"], ["public"]);
+// log out
+$router->add("/logout", ["LoginController", "logout"], ["public"]);
 
-// contact page
-$router->add("/contact", ["ContactController", "contact"]);
+// CONTACT page
+$router->add("/contact", ["ContactController", "contact"], ["public"]);
 
-// product page
-$router->add("/product/{id}", ["ProductController", "product"]);
+// VAKKENBEHEER page
+$router->add("/vakkenbeheer", ["VakkenBeheerController", "main"], ["public"]);
 
+// PRODUCT page
+$router->add("/product/{id}", ["ProductController", "product"], ["medewerker", "admin"]);
 // handle product payment
-$router->add("/product/buy/{id}", ["ProductController", "buyProduct"]);
+$router->add("/product/buy/{id}", ["ProductController", "buyProduct"], ["public"]);
 
 // sends url to dispatch
 $router->dispatch($path);

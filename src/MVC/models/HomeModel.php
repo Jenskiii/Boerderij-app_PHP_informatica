@@ -7,6 +7,7 @@ class AutomaatVak
   private $productModel;
   public function __construct()
   {
+    // connection
     $db = new Database();
     $this->pdo = $db->getConnection();
     // models

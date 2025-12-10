@@ -40,7 +40,7 @@
       -->
 
       <!-- FORM -->
-      <form novalidate class="form">
+      <form novalidate class="form" id="contactForm">
         <!-- fname -->
         <div class="form_group">
           <label for="fname">Voornaam</label>
@@ -84,7 +84,7 @@
   <section class="container flow">
     <!-- CONTACT INFO -->
 
-    <h2 class="heading-2">Contactgegevens</h2>
+    <h2 class="heading-2">Contactgegevens</h2> 
     <div class="contact_details">
 
       <div>

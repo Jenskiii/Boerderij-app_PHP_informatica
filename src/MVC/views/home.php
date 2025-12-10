@@ -16,8 +16,7 @@ require_once "../src/includes/header.php";
         <p>Wat vind u van mij? laat het <a class="navigation_link" href="/contact">hier</a> weten</p>
       </div>
       <figure>
-        <img class="cow" src="assets/images/Cow_01.png" alt="Bruin witte koe met een bel om zijn nek"
-          loading='lazy'>
+        <img class="cow" src="assets/images/Cow_01.png" alt="Bruin witte koe met een bel om zijn nek" loading='lazy'>
       </figure>
       <div class="automaat">
         <!-- TOP VAKKEN -->
@@ -90,6 +89,13 @@ require_once "../src/includes/header.php";
             <img src="/assets/images/qr-code.png" alt="qr-code used to pay for the products" loading='lazy'>
           </figure>
 
+
+          <!-- EDIT BUTTON -->
+          <?php if (isLoggedIn()): ?>
+            <form action="/vakkenbeheer" method="POST" class="automaat_edit">
+              <button class="btn edit">&#x270E;</button>
+            </form>
+          <?php endif; ?>
         </div>
 
 

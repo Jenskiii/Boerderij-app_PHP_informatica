@@ -8,7 +8,7 @@ class HomeController
     {
         // JS LINK
         $jsLink = "home.js";
-        
+
         // AUTOMAAT
         // get automaat vakken
         $vakModel = new AutomaatVak();

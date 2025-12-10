@@ -3,24 +3,27 @@
 
 <main class="container">
   <section>
+
+    <?php if (isset($_SESSION['login_error'])): ?>
+      <p style="color:red"><?= $_SESSION['login_error'] ?></p>
+      <?php unset($_SESSION['login_error']); ?>
+    <?php endif; ?>
+
+
     <div class="login_page | flow_small">
       <h1 class="heading-1">Login</h1>
-      <form novalidate action="/login" method="POST" class="form">
+      <form novalidate action="/login/validate" method="POST" class="form" id="loginForm">
         <!-- fname -->
         <div class="form_group | span_all">
           <label for="fname">Gebruikersnaam</label>
-          <!-- regex allows letters, space, - _ , and special letters: ë etc -->
-          <!-- no numbers -->
-          <input type="text" id="username" name="user_name" pattern="[A-Za-z_\-]+"
+          <input type="text" id="login_username" name="login_username" pattern="[A-Za-z_\-]+"
             data-error="Geen cijfers toegestaan" placeholder="John" required>
           <span class="error_message" aria-live="polite"></span>
         </div>
-
         <!-- password -->
         <div class="form_group | span_all">
           <label for="email">Wachtwoord</label>
-          <input minlength="8" type="password" id="password" name="password"
-            data-error="Wachtwoord moet 8 characters zijn" placeholder="********" required>
+          <input type="password" id="login_password" name="login_password" placeholder="********" required>
           <span class="error_message" aria-live="polite"></span>
         </div>
 

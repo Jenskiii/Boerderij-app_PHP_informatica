@@ -18,10 +18,9 @@ class ProductController
 
 
 
-    // BUY PRODUCT
+    // BUY PRODUCTs
     public function buyProduct($vakId)
     {
-        
         $this->vakModel->sellProductFromVak($vakId);
     }
 }
