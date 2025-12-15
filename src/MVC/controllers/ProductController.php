@@ -4,7 +4,7 @@ class ProductController
     private $vakModel;
     public function __construct()
     {
-        $this->vakModel = new AutomaatVak();
+        $this->vakModel = new AutomaatVakModel();
     }
 
 

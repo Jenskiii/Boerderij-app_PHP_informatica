@@ -20,7 +20,6 @@ class LoginController
     $username = $_POST['login_username'] ?? '';
     $password = $_POST['login_password'] ?? '';
 
-
     // find user in db
     $userModel = new UserModel();
     $user = $userModel->findUsername($username);

@@ -3,9 +3,14 @@
 <main class="container main_bg">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <img class="decoration-left" src="assets/images/hay-barn.png" alt="pauw in cartoon style">
+  <figure class="decoration_left">
+    <img src="assets/images/hay-barn.png" alt="varken in cartoon style">
+  </figure>
   <!-- decoratie dier rechts -->
-  <img class="decoration-right" src="assets/images/hay-barn.png" alt="pauw in cartoon style">
+  <figure class="decoration_right">
+    <img src="assets/images/hay-barn.png" alt="varken in cartoon style">
+  </figure>
+  
   <section class="py-16 bg-green-50">
     <div class="container mx-auto px-6 md:px-12 max-w-5xl">
       <h1 class="text-4xl font-bold text-green-800 mb-8 text-center">

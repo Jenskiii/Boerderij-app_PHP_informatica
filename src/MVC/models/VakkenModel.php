@@ -1,7 +1,7 @@
 <?php
 require_once "../src/config/database.php";
 // fetch vak data voor automaat
-class AutomaatVak
+class AutomaatVakModel
 {
   private $pdo;
   private $productModel;
@@ -11,7 +11,7 @@ class AutomaatVak
     $db = new Database();
     $this->pdo = $db->getConnection();
     // models
-    $this->productModel = new Product();
+    $this->productModel = new ProductModel();
   }
 
   // fetch alle vakken
@@ -43,13 +43,21 @@ class AutomaatVak
 
     // zoek bij elk vak, het passende product via product_id
     foreach ($vakken as &$vak) {
+      // fetch product based on id
       $product = $productModel->getSpecificProduct($vak['product_id']);
-      // als product is ingevoerd geef product anders null
+      // fetch stock based on id
+      $stock = $productModel->getProductStock($vak['product_id']);
+
+      // if product return product : else null
       $vak['product'] = $product ?: null;
+
       // set all product variables
       $vak['product_name'] = $product['naam'] ?? 'geen product';
       $vak['product_price'] = $product['verkoopprijs_per_stuk'] ?? '0.00';
       $vak['product_img'] = $product['afbeelding'] ?? 'assets/images/uploaded/default-image.png';
+
+      // set product stock
+      $vak['stock'] = $stock['aantal'] ?? 'n.v.t.';
     }
     // return
     return $vakken;
@@ -85,4 +93,32 @@ class AutomaatVak
     exit;
   }
 
+  // add to vak
+  public function addProductToVak($vakId, $productId)
+  {
+    // Add product to vak + set value to 1
+    $stmt = $this->pdo->prepare("
+                UPDATE vak
+                SET product_id = ?, aantal = 1
+                WHERE vak_id = ? 
+            ");
+
+    $stmt->execute([$productId, $vakId]);
+  }
+
+  // empty vak
+  public function emptyVak($vakId)
+  {
+    // Remove product from vak
+    $stmt = $this->pdo->prepare("
+                UPDATE vak
+                SET product_id = NULL, aantal = 0
+                WHERE vak_id = ? 
+            ");
+
+    $stmt->execute([ $vakId]);
+  }
 }
+
+
+

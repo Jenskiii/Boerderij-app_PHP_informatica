@@ -93,7 +93,7 @@ require_once "../src/includes/header.php";
           <!-- EDIT BUTTON -->
           <?php if (isLoggedIn()): ?>
             <form action="/vakkenbeheer" method="POST" class="automaat_edit">
-              <button class="btn edit">&#x270E;</button>
+              <button class="btn | crud edit">&#x270E;</button>
             </form>
           <?php endif; ?>
         </div>

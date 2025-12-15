@@ -47,7 +47,7 @@
       <?php if (isLoggedIn()): ?>
         <form action="/logout" method="POST" class="header_profile">
           <p><?= htmlspecialchars(user()['rol'] ?? '') ?></p>
-          <button class="btn log_out">&#10162;</button>
+          <button class="btn crud delete">&#10162;</button>
         </form>
       <?php endif; ?>
     </div>

@@ -1,5 +1,5 @@
 <?php
-require_once "../src/MVC/models/HomeModel.php";
+require_once "../src/MVC/models/VakkenModel.php";
 require_once "../src/MVC/models/ProductModel.php";
 // DISPLAY FOR VIEW
 class HomeController
@@ -11,8 +11,8 @@ class HomeController
 
         // AUTOMAAT
         // get automaat vakken
-        $vakModel = new AutomaatVak();
-        $productModel = new Product();
+        $vakModel = new AutomaatVakModel();
+        $productModel = new ProductModel();
         $alleAutomaatVakken = $vakModel->getAllVakkenWithProducts($productModel);
 
         // vakken verdelen in 2 rije van 5

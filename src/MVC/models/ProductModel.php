@@ -1,7 +1,7 @@
 <?php
 require_once "../src/config/database.php";
 
-class Product
+class ProductModel
 {
   // DB CONNECTION
   private $pdo;
@@ -31,8 +31,20 @@ class Product
     // return product else null
     return $product ?: null;
   }
+// get products that are in stock
+  public function getAllProductsInStock()
+  {
+    $stmt = $this->pdo->query("
+        SELECT product.product_id, product.naam, voorraad.aantal
+        FROM product
+        INNER JOIN voorraad  ON product.product_id = voorraad.product_id
+        WHERE voorraad.aantal > 0
+    ");
+    return $stmt->fetchAll();
+  }
 
-  public function productStock($id)
+// check product stock
+  public function getProductStock($id)
   {
     // kijken wat de voorraad is
     $stmt = $this->pdo->prepare("SELECT * FROM voorraad WHERE product_id = ?");

@@ -10,7 +10,7 @@ require_once "../src/MVC/controllers/StatisticsController.php";
 require_once "../src/MVC/controllers/EntrepreneursController.php";
 require_once "../src/MVC/controllers/LoginController.php";
 require_once "../src/MVC/controllers/ContactController.php";
-require_once "../src/MVC/controllers/VakkenBeheerController.php";
+require_once "../src/MVC/controllers/SlotManagementController.php";
 
 // AUTOMATICLY LOG OFF AFTER 15 MIN
 // 15 min timer
@@ -56,8 +56,11 @@ $router->add("/logout", ["LoginController", "logout"], ["public"]);
 // CONTACT page
 $router->add("/contact", ["ContactController", "contact"], ["public"]);
 
-// VAKKENBEHEER page
-$router->add("/vakkenbeheer", ["VakkenBeheerController", "main"], ["public"]);
+// SLOTMANAGEMENT page
+$router->add("/vakkenbeheer", ["SlotManagementController", "slotManagement"], ["public"]);
+$router->add("/vakkenbeheer/add", ["SlotManagementController", "slotManagementAddProduct"], ["public"]);
+$router->add("/vakkenbeheer/delete", ["SlotManagementController", "slotManagementEmptyVak"], ["public"]);
+$router->add("/vakkenbeheer/edit", ["SlotManagementController", "slotManagementEditVak"], ["public"]);
 
 // PRODUCT page
 $router->add("/product/{id}", ["ProductController", "product"], ["medewerker", "admin"]);

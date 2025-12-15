@@ -3,9 +3,13 @@
 <main class="container main_bg section_gap">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <img class="decoration_left" src="assets/images/goat.png" alt="geit in cartoon style">
-  <!-- decoratie dier rechts -->
-  <img class="decoration_right" src="assets/images/goat.png" alt="geit in cartoon style">
+  <figure class="decoration_left">
+    <img src="assets/images/goat.png" alt="varken in cartoon style">
+  </figure>
+    <!-- decoratie dier rechts -->
+  <figure class="decoration_right">
+    <img src="assets/images/goat.png" alt="varken in cartoon style">
+  </figure>
 
 
   <!-- TITLE -->
@@ -84,7 +88,7 @@
   <section class="container flow">
     <!-- CONTACT INFO -->
 
-    <h2 class="heading-2">Contactgegevens</h2> 
+    <h2 class="heading-2">Contactgegevens</h2>
     <div class="contact_details">
 
       <div>

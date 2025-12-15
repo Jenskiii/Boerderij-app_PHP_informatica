@@ -15,7 +15,6 @@
   --clr-black: 0 100% 0%;
   --clr-red: 0 66% 54%;
   --clr-orange: 39 100% 50%;
-;
   /* fonts */
   --ff-sans-poppins: "Poppins", sans-serif;
   --ff-sans: "Open Sans", sans-serif;
@@ -93,7 +92,7 @@ body {
 .header_profile {
   display: grid;
   place-items: center;
-  gap: .5em;
+  gap: 0.5em;
   padding: 0.5rem 1rem;
   background-color: hsl(var(--clr-background));
   border-radius: 8px;
@@ -214,28 +213,31 @@ body {
   color: hsl(var(--clr-white));
 }
 
-.btn.log_out {
-  color: white;
-  background-color: hsl(var(--clr-red));
-  padding: 0;
-  border-radius: 8px;
-}
-.btn.log_out:hover,
-.btn.log_out:focus {
-  background-color: hsl(var(--clr-red) / .5);
-}
-
-.btn.edit{
+/* crud buttons */
+.btn.crud {
   font-size: var(--fs-600);
   color: hsl(var(--clr-white));
   border: 2px solid hsl(var(--clr-white));
-  background-color: hsl(var(--clr-orange));
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 8px;
 }
-.btn.edit:hover,
-.btn.edit:focus {
-  background-color: transparent;
+.btn.crud.edit {
+  background-color: hsl(var(--clr-orange));
+}
+.btn.crud.delete {
+  background-color: hsl(var(--clr-red));
+}
+.btn.crud.add {
+  background-color: hsl(var(--clr-primary-light));
+}
+.btn.crud:hover,
+.btn.crud:focus {
+  opacity: 0.7;
+}
+/* disabled button */
+.btn:disabled,
+.btn[disabled] {
+  background-color: grey !important;
 }
 /* DUCK */
 .duck {
@@ -364,7 +366,7 @@ body {
   background-color: hsl(var(--clr-wood-light));
   border: 4px hsl(var(--clr-wood) / 0.8) solid;
 }
-.automaat_edit{
+.automaat_edit {
   position: absolute;
   right: 1rem;
 }
@@ -759,4 +761,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* SLOTMANAGEMENT */
+.slotManagement_select-form {
+  display: flex;
+  gap: 2rem;
 }

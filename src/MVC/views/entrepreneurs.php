@@ -3,10 +3,15 @@
 <main class="container main_bg section_gap">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <img class="decoration_left" src="assets/images/peacock.png" alt="pauw in cartoon style">
+  <figure class="decoration_left">
+    <img src="assets/images/peacock.png" alt="varken in cartoon style">
+  </figure>
   <!-- decoratie dier rechts -->
-  <img class="decoration_right" src="assets/images/peacock.png" alt="pauw in cartoon style">
+  <figure class="decoration_right">
+    <img src="assets/images/peacock.png" alt="varken in cartoon style">
+  </figure>
 
+  
   <!-- SECTION START-->
   <section class="ondernemers">
     <div class="container section_gap">

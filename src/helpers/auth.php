@@ -4,7 +4,7 @@ function user()
 {
   return $_SESSION["user"] ?? null;
 }
-// check if logged in
+// check if logged in 
 function isLoggedIn() {
     return isset($_SESSION["user"]);
 }
