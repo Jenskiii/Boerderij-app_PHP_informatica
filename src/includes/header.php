@@ -14,11 +14,11 @@
   <!-- css -->
   <link rel="stylesheet" href="/assets/styles.css">
   <!-- dynamic js link -->
-  <?php
-  if (isset($jsLink)) {
-    echo "<script src='/assets/js/$jsLink' defer></script>";
-  }
-  ?>
+  <?php if (!empty($jsLinks)): ?>
+    <?php foreach ($jsLinks as $js): ?>
+      <script src="/assets/js/<?= htmlspecialchars($js) ?>" defer></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
   <title>Kinderboerderij t' Erf</title>
 </head>
 

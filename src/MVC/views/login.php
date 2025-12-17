@@ -3,7 +3,7 @@
 
 <main class="container">
   <section>
-    <div class="login_page | flow_small">
+    <div class="form_small | flow_small">
       <h1 class="heading-1">Login</h1>
       <form novalidate action="/login/validate" method="POST" class="form" id="loginForm">
 
@@ -19,7 +19,7 @@
         <div class="form_group | span_all">
           <label for="fname">Gebruikersnaam</label>
           <input type="text" id="login_username" name="login_username" pattern="[A-Za-z_\-]+"
-            data-error="Geen cijfers toegestaan" placeholder="John" required>
+            data-error="Geen cijfers toegestaan" placeholder="John" required autofocus>
           <span class="error_message" aria-live="polite"></span>
         </div>
         <!-- password -->

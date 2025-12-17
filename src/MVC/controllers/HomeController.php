@@ -1,17 +1,20 @@
 <?php
 require_once "../src/MVC/models/VakkenModel.php";
 require_once "../src/MVC/models/ProductModel.php";
+require_once "../src/MVC/models/OrderModel.php";
 // DISPLAY FOR VIEW
 class HomeController
 {
     public function home(): void
     {
         // JS LINK
-        $jsLink = "home.js";
-
+        $jsLinks = [
+            "home.js",
+            'handleUrl.js',
+        ];
         // AUTOMAAT
         // get automaat vakken
-        $vakModel = new AutomaatVakModel();
+        $vakModel = new VakkenModel();
         $productModel = new ProductModel();
         $alleAutomaatVakken = $vakModel->getAllVakkenWithProducts($productModel);
 

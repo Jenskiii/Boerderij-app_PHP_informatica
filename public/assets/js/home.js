@@ -130,6 +130,7 @@ pinAccept.addEventListener("click", (e) => {
       });
     }, 2500);
   } else {
+    
     // als geen voorraad, show error message + msg on display
     paymentAlert.classList.add("error");
     paymentAlert.textContent = "Vak bevat geen product!";
@@ -142,20 +143,4 @@ pinAccept.addEventListener("click", (e) => {
   }
 });
 
-// HANDLE URL AFTER PAYMENT
-document.addEventListener("DOMContentLoaded", () => {
-  // Check of ?succes in de URL staat
-  if (window.location.search.includes("succes")) {
-    paymentAlert.classList.add("success"); // Fade-in
 
-    // Na 2 seconden verwijderen
-    setTimeout(() => {
-      paymentAlert.classList.remove("success");
-    }, 2500);
-
-    // Verwijder ?succes uit de URL zonder te herladen
-    const url = new URL(window.location);
-    url.searchParams.delete("succes");
-    window.history.replaceState({}, document.title, url);
-  }
-});

@@ -4,7 +4,7 @@ class ProductController
     private $vakModel;
     public function __construct()
     {
-        $this->vakModel = new AutomaatVakModel();
+        $this->vakModel = new VakkenModel();
     }
 
 
@@ -19,8 +19,18 @@ class ProductController
 
 
     // BUY PRODUCTs
-    public function buyProduct($vakId)
+    public function buyProduct()
     {
-        $this->vakModel->sellProductFromVak($vakId);
+        if (!isPost()) {
+            header("Location: /");
+            exit;
+        }
+
+        // POST DATA top or bottom form
+        $vakId = $_POST["buyProduct_vakId_top"] ?? $_POST["buyProduct_vakId_bottom"] ?? null;
+        $productId = $_POST["buyProduct_productId_top"] ?? $_POST["buyProduct_productId_bottom"] ?? null;
+
+        $this->vakModel->sellProductFromVak($vakId, $productId);
+
     }
 }

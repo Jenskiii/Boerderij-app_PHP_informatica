@@ -10,6 +10,8 @@ class ProductModel
     $db = new Database();
     $this->pdo = $db->getConnection();
   }
+
+
   // ALL PRODUCTS
   // fetch alle producten
   public function getAllProducts()
@@ -31,7 +33,8 @@ class ProductModel
     // return product else null
     return $product ?: null;
   }
-// get products that are in stock
+
+  // get products that are in stock
   public function getAllProductsInStock()
   {
     $stmt = $this->pdo->query("
@@ -43,7 +46,7 @@ class ProductModel
     return $stmt->fetchAll();
   }
 
-// check product stock
+  // check product stock
   public function getProductStock($id)
   {
     // kijken wat de voorraad is
@@ -53,15 +56,28 @@ class ProductModel
     return $stmt->fetch();
   }
 
-  // decrease product stock
-  public function decreaseProductStock($id)
+  // update product stock
+  public function updateProductStock($id, $amount)
   {
     // als er voorraad is, start functie
     $stmt = $this->pdo->prepare("
       UPDATE voorraad 
-      SET aantal = aantal -1 
+      SET aantal = ?
       WHERE product_id = ?
-      AND aantal > 0 ");
+      AND ? >= 0 ");
+    return $stmt->execute([$amount, $id, $amount]);
+  }
+
+
+
+  public function updateProductStatus($id)
+  {
+    $stmt = $this->pdo->prepare("
+    UPDATE product
+    SET ingebruik = true
+    WHERE product_id = ?
+    AND ingebruik != true
+    ");
     return $stmt->execute([$id]);
   }
 }

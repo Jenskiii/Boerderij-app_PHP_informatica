@@ -1,10 +1,12 @@
 <?php
 require_once "../src/config/database.php";
 // fetch vak data voor automaat
-class AutomaatVakModel
+class VakkenModel
 {
   private $pdo;
   private $productModel;
+  private $orderModel;
+
   public function __construct()
   {
     // connection
@@ -12,7 +14,11 @@ class AutomaatVakModel
     $this->pdo = $db->getConnection();
     // models
     $this->productModel = new ProductModel();
+    $this->orderModel = new OrderModel();
+
   }
+
+
 
   // fetch alle vakken
   public function getAllVakken()
@@ -53,44 +59,17 @@ class AutomaatVakModel
 
       // set all product variables
       $vak['product_name'] = $product['naam'] ?? 'geen product';
-      $vak['product_price'] = $product['verkoopprijs_per_stuk'] ?? '0.00';
+      $vak['product_price'] = $product['verkoopprijs'] ?? '0.00';
       $vak['product_img'] = $product['afbeelding'] ?? 'assets/images/uploaded/default-image.png';
+      $vak['product_id'] = $product['product_id'] ?? rand(1, 1000);
 
       // set product stock
       $vak['stock'] = $stock['aantal'] ?? 'n.v.t.';
     }
+    unset($vak);
+
     // return
     return $vakken;
-  }
-
-  public function sellProductFromVak($vakId)
-  {
-    // haal het vak op
-    $selectedVak = $this->getSpecificVak($vakId);
-
-    if (!empty($selectedVak['product_id']) && $selectedVak['aantal'] > 0) {
-      // verminder voorraad van product
-      $success = $this->productModel->decreaseProductStock($selectedVak['product_id']);
-
-      // verminder voorraad van vak
-      $stmt = $this->pdo->prepare("
-                UPDATE vak
-                SET aantal = aantal - 1
-                WHERE vak_id = ? AND aantal > 0
-            ");
-
-      $stmt->execute([$vakId]);
-
-      // check of productvoorraad op is
-      if (!$success) {
-        header("Location: /?error=outofstock");
-        exit;
-      }
-    }
-
-    // terug naar home
-    header("Location: /?succes");
-    exit;
   }
 
   // add to vak
@@ -102,23 +81,96 @@ class AutomaatVakModel
                 SET product_id = ?, aantal = 1
                 WHERE vak_id = ? 
             ");
-
     $stmt->execute([$productId, $vakId]);
+
+    return true;
   }
 
-  // empty vak
+  // empty vak + update status
   public function emptyVak($vakId)
   {
-    // Remove product from vak
+    // Fetch product id for vak with fetchcollumn
+    $stmt = $this->pdo->prepare("SELECT product_id FROM vak WHERE vak_id = ?");
+    $stmt->execute([$vakId]);
+    $productId = $stmt->fetchColumn();
+
+    // empty vak
+    if ($productId) {
+      $stmt = $this->pdo->prepare("
+            UPDATE vak
+            SET product_id = NULL, aantal = 0
+            WHERE vak_id = ?
+        ");
+      $stmt->execute([$vakId]);
+
+      //  Check if product is in use in other vakken
+      $stmt = $this->pdo->prepare("
+            SELECT COUNT(*) 
+            FROM vak
+            WHERE product_id = ? AND aantal > 0
+        ");
+      $stmt->execute([$productId]);
+      $count = $stmt->fetchColumn();
+
+      // if no longer in use, set ingebruik to false
+      if ($count == 0) {
+        $stmt = $this->pdo->prepare("
+                UPDATE product
+                SET ingebruik = false
+                WHERE product_id = ?
+            ");
+        $stmt->execute([$productId]);
+      }
+    }
+    return true;
+  }
+
+  public function updateVakStorage($amount, $vakId)
+  {
+    // verminder voorraad van vak
     $stmt = $this->pdo->prepare("
                 UPDATE vak
-                SET product_id = NULL, aantal = 0
-                WHERE vak_id = ? 
+                SET aantal = ?
+                WHERE vak_id = ? AND aantal > 0
             ");
+    $stmt->execute([$amount, $vakId]);
 
-    $stmt->execute([ $vakId]);
+    return true;
+  }
+
+
+  // SELL PRODUCT FROM VAK
+  public function sellProductFromVak($vakId, $productId)
+  {
+    // haal het vak op
+    $selectedVak = $this->getSpecificVak($vakId);
+    $selectedProduct = $this->productModel->getSpecificProduct($productId);
+
+    if (!empty($selectedVak['product_id']) && $selectedVak['aantal'] > 0) {
+      // verminder voorraad van product
+      $success = $this->productModel->updateProductStock($selectedVak['product_id'], -1);
+
+      // Create order
+      $this->orderModel->createOrder($productId, $selectedProduct["verkoopprijs"], 1);
+
+      // Empty vak
+      $this->emptyVak($vakId);
+
+
+
+      // check of productvoorraad op is
+      if (!$success) {
+        header("Location: /?error=outofstock");
+        exit;
+      }
+    }
+
+    // terug naar home
+    header("Location: /?success");
+    exit;
   }
 }
+
 
 
 

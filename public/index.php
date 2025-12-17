@@ -61,11 +61,12 @@ $router->add("/vakkenbeheer", ["SlotManagementController", "slotManagement"], ["
 $router->add("/vakkenbeheer/add", ["SlotManagementController", "slotManagementAddProduct"], ["public"]);
 $router->add("/vakkenbeheer/delete", ["SlotManagementController", "slotManagementEmptyVak"], ["public"]);
 $router->add("/vakkenbeheer/edit", ["SlotManagementController", "slotManagementEditVak"], ["public"]);
+$router->add("/vakkenbeheer/edit/safe", ["SlotManagementController", "slotManagementEditSafe"], ["public"]);
 
 // PRODUCT page
+$router->add("/product/buy", ["ProductController", "buyProduct"], ["public"]);
 $router->add("/product/{id}", ["ProductController", "product"], ["medewerker", "admin"]);
-// handle product payment
-$router->add("/product/buy/{id}", ["ProductController", "buyProduct"], ["public"]);
+
 
 // sends url to dispatch
 $router->dispatch($path);

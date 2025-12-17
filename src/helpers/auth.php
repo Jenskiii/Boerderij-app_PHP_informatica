@@ -5,8 +5,9 @@ function user()
   return $_SESSION["user"] ?? null;
 }
 // check if logged in 
-function isLoggedIn() {
-    return isset($_SESSION["user"]);
+function isLoggedIn()
+{
+  return isset($_SESSION["user"]);
 }
 
 // check if employee
@@ -19,5 +20,11 @@ function isEmployee()
 function isAdmin()
 {
   return isset($_SESSION["user"]) && $_SESSION["user"]["rol"] === "admin";
+}
+
+// check if request is POST
+function isPost()
+{
+  return $_SERVER['REQUEST_METHOD'] === 'POST';
 }
 

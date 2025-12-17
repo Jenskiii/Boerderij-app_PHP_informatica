@@ -2,10 +2,10 @@
   /* colors */
   --clr-primary-dark: 136 84% 29%;
   --clr-primary-light: 92 49% 44%;
-  --clr-primary-lightest: 68, 83%, 39%;
+  --clr-primary-lightest: 68 83% 39%;
   --clr-secondary: 8 62% 75%;
   --clr-wood: 36 71% 42%;
-  --clr-wood-light: 36, 70%, 50%;
+  --clr-wood-light: 36 70% 50%;
   --clr-neutral: 0 0% 27%;
   --clr-accent: 210 51% 29%;
   --clr-muted: 0 0% 95%;
@@ -69,6 +69,17 @@ body {
   background: hsl(var(--clr-background)) url("/assets/images/background.png")
     repeat-x center;
   background-size: cover;
+}
+
+/* //////////////////// */
+/*     TYPOGRAFIE      */
+/* ////////////////// */
+
+.clr_red {
+  color: hsl(var(--clr-red));
+}
+.clr_green {
+  color: hsl(var(--clr-primary-dark));
 }
 
 /* //////////////////// */
@@ -219,6 +230,7 @@ body {
   color: hsl(var(--clr-white));
   border: 2px solid hsl(var(--clr-white));
   padding: 0.25rem 0.5rem;
+  min-width: 3rem;
   border-radius: 8px;
 }
 .btn.crud.edit {
@@ -229,10 +241,11 @@ body {
 }
 .btn.crud.add {
   background-color: hsl(var(--clr-primary-light));
+  opacity: 0.75;
 }
 .btn.crud:hover,
 .btn.crud:focus {
-  opacity: 0.7;
+  border-color: hsl(var(--clr-black) / 0.75);
 }
 /* disabled button */
 .btn:disabled,
@@ -313,37 +326,17 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
+
 .automaat_deur.active {
   top: -99px;
 }
-.automaat_product img {
+
+.automaat_product input[type="image"] {
+  cursor: pointer;
   place-self: center;
   height: 99px;
   width: 100%;
   object-fit: cover;
-}
-/* automaat alert */
-.automaat_alert {
-  position: absolute;
-  top: -70px;
-  color: hsl(var(--clr-white));
-  padding: 15px 20px;
-  border-radius: 8px;
-  z-index: 1000;
-  border: solid 2px hsl(var(--clr-white));
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-.automaat_alert.success {
-  background: hsl(var(--clr-primary-light));
-}
-.automaat_alert.error {
-  background: hsl(var(--clr-red));
-}
-.automaat_alert.success,
-.automaat_alert.error {
-  opacity: 1;
-  opacity: 1;
 }
 
 /* Bovenste rij: eerste 5 items */
@@ -596,16 +589,13 @@ body {
   outline-color: hsl(var(--clr-red));
   color: hsl(var(--clr-red));
 }
-
 .form_group .error_message {
   color: hsl(var(--clr-red));
   font-size: var(--fs-300);
 }
-
 .form_group .error_message:empty {
   display: none;
 }
-
 /* form_valid */
 .form_group input:user-valid,
 .form_group textarea:user-valid {
@@ -613,7 +603,73 @@ body {
   outline-color: hsl(var(--clr-primary-dark));
   color: hsl(var(--clr-primary-dark));
 }
+/* FORM SMALL */
+.form_small {
+  background-color: hsl(var(--clr-background));
+  padding: 2rem;
+  border-radius: 8px;
+  width: 25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+/* TABLE */
+.table {
+  position: relative;
+  border-collapse: collapse;
+  width: 100%;
+}
+.table td,
+.table th {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+.table tr:nth-child(even) {
+  background-color: hsl(var(--clr-wood-light) / 0.05);
+}
+.table tr:hover {
+  background-color: hsl(var(--clr-black) / 0.2);
+}
+.table th {
+  color: w;
+  padding-block: 12px;
+  text-align: left;
+  background-color: hsl(var(--clr-wood-light) / 0.6);
+}
+.table select {
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 8px;
+}
+.table_actions {
+  justify-content: center;
+  gap: 0.5rem;
+}
+/* ALERT BOX */
+.alert_box {
+  position: absolute;
+  color: hsl(var(--clr-white));
+  padding: 15px 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  border: solid 2px hsl(var(--clr-white));
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.alert_box.success {
+  background: hsl(var(--clr-primary-light));
+}
+.alert_box.error {
+  background: hsl(var(--clr-red));
+}
+.alert_box.success,
+.alert_box.error {
+  opacity: 1;
+  opacity: 1;
+}
 /* //////////////////// */
 /*      ANIMATIONS     */
 /* ////////////////// */
@@ -717,6 +773,9 @@ body {
   border-radius: 50px;
   margin-block: 20px 75px;
 }
+.automaat_alert.alert_box {
+  top: -70px;
+}
 
 /* ABOUT */
 .about_text {
@@ -751,20 +810,16 @@ body {
   border-radius: 8px;
 }
 
-/* LOGIN */
-.login_page {
-  background-color: hsl(var(--clr-background));
-  padding: 2rem;
-  border-radius: 8px;
-  width: 25rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 /* SLOTMANAGEMENT */
 .slotManagement_select-form {
   display: flex;
   gap: 2rem;
+}
+.slotManagement_add-button {
+  justify-self: flex-start;
+}
+.slotManagement_alert.alert_box {
+  top: 9.6rem;
+  left: 50%;
+  transform: translateX(-50%);
 }

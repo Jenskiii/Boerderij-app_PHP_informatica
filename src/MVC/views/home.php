@@ -35,11 +35,17 @@ require_once "../src/includes/header.php";
 
             <!-- SHOW PRODUCT -->
             <?php if (!empty($vak['product_id']) && ($vak['aantal'] ?? 0) > 0): ?>
+
               <!-- Klikbare afbeelding leidt naar ProductController  via router -->
-              <a class="automaat_product" href="/product/buy/<?= urlencode($vak['vak_id']) ?>">
-                <img src="<?= htmlspecialchars($vak['product_img']) ?>" alt=<?= htmlspecialchars($vak['product_name']) ?>
-                  loading="lazy" />
-              </a>
+              <form class="automaat_product" action="/product/buy" method="post" id="home_form_top">
+                <input type="image" src="<?= htmlspecialchars($vak['product_img']) ?>"
+                  alt=<?= htmlspecialchars($vak['product_name']) ?> loading="lazy" />
+                <input type="hidden" id="<?= $vak["vak_id"] ?>" name="buyProduct_vakId_top"
+                  value="<?= htmlspecialchars($vak['vak_id']) ?>">
+                <input type="hidden" id="<?= $vak['product_id'] ?>" name="buyProduct_productId_top"
+                  value="<?= htmlspecialchars($vak['product_id']) ?>">
+              </form>
+
               <!-- als uitverkocht show empty -->
             <?php else: ?>
               <figure class="automaat_product">
@@ -59,7 +65,7 @@ require_once "../src/includes/header.php";
         <div class=" kassa">
 
           <!-- show alert when succer or failure -->
-          <span class="automaat_alert">Veel plezier met uw product!</span>
+          <span class="automaat_alert | alert_box">Veel plezier met uw product!</span>
 
           <!-- PIN AUTOMAAT -->
           <div class="pin_automaat | inactive">
@@ -116,10 +122,15 @@ require_once "../src/includes/header.php";
             <!-- SHOW PRODUCT -->
             <?php if (!empty($vak['product_id']) && ($vak['aantal'] ?? 0) > 0): ?>
               <!-- Klikbare afbeelding leidt naar ProductController  via router -->
-              <a class="automaat_product" href="/product/buy/<?= urlencode($vak['vak_id']) ?>">
-                <img src="<?= htmlspecialchars($vak['product_img']) ?>" alt=<?= htmlspecialchars($vak['product_name']) ?>
-                  loading="lazy" />
-              </a>
+              <form class="automaat_product" action="/product/buy" method="post" id="home_form_bottom">
+                <input type="image" src="<?= htmlspecialchars($vak['product_img']) ?>"
+                  alt=<?= htmlspecialchars($vak['product_name']) ?> loading="lazy" />
+                <input type="hidden" id="<?= $vak["vak_id"] ?>" name="buyProduct_vakId_bottom"
+                  value="<?= htmlspecialchars($vak['vak_id']) ?>">
+                <input type="hidden" id="<?= $vak["product_id"] ?>" name="buyProduct_productId_bottom"
+                  value="<?= htmlspecialchars($vak['product_id']) ?>">
+              </form>
+
               <!-- als uitverkocht show empty -->
             <?php else: ?>
               <figure class="automaat_product">
