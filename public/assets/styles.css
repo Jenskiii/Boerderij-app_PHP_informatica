@@ -180,7 +180,6 @@ body {
   font-family: inherit;
   font-weight: var(--fw-400);
   transition: 350ms ease-in-out;
-  width: 100%;
 }
 
 /* BUTTON STYLES */
@@ -608,7 +607,7 @@ body {
   background-color: hsl(var(--clr-background));
   padding: 2rem;
   border-radius: 8px;
-  width: 25rem;
+  min-width: 25rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -670,6 +669,20 @@ body {
   opacity: 1;
   opacity: 1;
 }
+
+/* MODAL */
+.modal {
+  display: block; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 /* //////////////////// */
 /*      ANIMATIONS     */
 /* ////////////////// */
@@ -816,10 +829,18 @@ body {
   gap: 2rem;
 }
 .slotManagement_add-button {
-  justify-self: flex-start;
+  justify-self: flex-end;
 }
 .slotManagement_alert.alert_box {
   top: 9.6rem;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* PRODUCTS */
+.product_filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }

@@ -34,6 +34,7 @@ $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $router = new Router;
 
 // PAGE ROUTES
+
 // HOME
 $router->add("/", ["HomeController", "home"], ["public"]);
 
@@ -57,15 +58,16 @@ $router->add("/logout", ["LoginController", "logout"], ["public"]);
 $router->add("/contact", ["ContactController", "contact"], ["public"]);
 
 // SLOTMANAGEMENT page
-$router->add("/vakkenbeheer", ["SlotManagementController", "slotManagement"], ["public"]);
-$router->add("/vakkenbeheer/add", ["SlotManagementController", "slotManagementAddProduct"], ["public"]);
-$router->add("/vakkenbeheer/delete", ["SlotManagementController", "slotManagementEmptyVak"], ["public"]);
-$router->add("/vakkenbeheer/edit", ["SlotManagementController", "slotManagementEditVak"], ["public"]);
-$router->add("/vakkenbeheer/edit/safe", ["SlotManagementController", "slotManagementEditSafe"], ["public"]);
+$router->add("/vakkenbeheer", ["SlotManagementController", "slotManagement"], ["medewerker", "admin"]);
+$router->add("/vakkenbeheer/add", ["SlotManagementController", "slotManagementAddProduct"], ["medewerker", "admin"]);
+$router->add("/vakkenbeheer/delete", ["SlotManagementController", "slotManagementEmptyVak"], ["medewerker", "admin"]);
+$router->add("/vakkenbeheer/edit", ["SlotManagementController", "slotManagementEditVak"], ["medewerker", "admin"]);
+$router->add("/vakkenbeheer/edit/safe", ["SlotManagementController", "slotManagementEditSafe"], ["medewerker", "admin"]);
 
 // PRODUCT page
+$router->add("/product", ["ProductController", "product"], ["medewerker", "admin"]);
 $router->add("/product/buy", ["ProductController", "buyProduct"], ["public"]);
-$router->add("/product/{id}", ["ProductController", "product"], ["medewerker", "admin"]);
+$router->add("/product/{id}", ["ProductController", "selectedProduct"], ["medewerker", "admin"]);
 
 
 // sends url to dispatch

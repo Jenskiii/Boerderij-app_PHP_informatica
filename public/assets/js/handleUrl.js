@@ -25,6 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Verwijder ? uit de URL zonder te herladen
   const url = new URL(window.location);
-  url.searchParams.delete("succes");
+  url.searchParams.delete("success");
   window.history.replaceState({}, document.title, url);
 });

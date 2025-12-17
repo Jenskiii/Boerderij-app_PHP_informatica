@@ -21,6 +21,8 @@ class ProductModel
     return $stmt->fetchAll();
   }
 
+
+
   // SINGLE PRODUCT
   // fetch product dat overkomt met id
   public function getSpecificProduct($id)
@@ -42,6 +44,17 @@ class ProductModel
         FROM product
         INNER JOIN voorraad  ON product.product_id = voorraad.product_id
         WHERE voorraad.aantal > 0
+    ");
+    return $stmt->fetchAll();
+  }
+
+  // get products with stock
+  public function getAllProductsWithStock()
+  {
+    $stmt = $this->pdo->query("
+        SELECT product.*, voorraad.aantal
+        FROM product
+        INNER JOIN voorraad  ON product.product_id = voorraad.product_id
     ");
     return $stmt->fetchAll();
   }

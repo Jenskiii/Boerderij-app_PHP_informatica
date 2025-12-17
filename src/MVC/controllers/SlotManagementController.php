@@ -59,7 +59,7 @@ class SlotManagementController
     $successStatus = $this->productModel->updateProductStatus($productId);
 
     // if error
-    if (!$succesAdd || $successStatus) {
+    if (!$succesAdd || !$successStatus) {
       header("Location: /vakkenbeheer?error");
       exit;
     }

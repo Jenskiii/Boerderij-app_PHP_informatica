@@ -1,0 +1,138 @@
+<?php require_once "../src/includes/header.php"; ?>
+
+<main class="container main_bg section_gap">
+  <!-- TITLE -->
+  <section>
+    <div class="container">
+      <div class="page_title">
+        <h1 class="heading-1">
+          Producten
+        </h1>
+        <p>
+          Beheer onze producten: voeg ze toe, maak wijzigingen of verwijder items
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FILTER -->
+  <section class="container">
+
+    <div class="product_filter-wrapper">
+      <form method="get">
+        <label for="product_filter">Filter producten:</label>
+        <select name="product_filter" id="product_filter">
+          <option value="all" <?= $filter === 'all' ? 'selected' : '' ?>>Alles</option>
+          <option value="in_use" <?= $filter === 'in_use' ? 'selected' : '' ?>>In gebruik</option>
+          <option value="in_stock" <?= $filter === 'in_stock' ? 'selected' : '' ?>>Op voorraad</option>
+          <option value="out_of_stock" <?= $filter === 'out_of_stock' ? 'selected' : '' ?>>Niet op voorraad</option>
+        </select>
+      </form>
+
+      <!-- OPENS MODAL -->
+      <button class="btn primary" id="openModalBtn">Product toevoegen</button>
+    </div>
+
+    <!-- PRODUCTEN TABEL -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Naam</th>
+          <th>Inkoopprijs</th>
+          <th>Verkoopprijs</th>
+          <th>Voorraad</th>
+          <th>In gebruik</th>
+          <th>Afbeelding</th>
+          <th>Acties</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <?php foreach ($products as $product): ?>
+          <!-- if filterProduct returns false skip row -->
+          <?php if (!filterProduct($product, $filter))
+            continue; ?>
+          <tr>
+            <td><?= htmlspecialchars($product['naam']) ?></td>
+            <td>&#8364; <?= htmlspecialchars($product['inkoopprijs']) ?></td>
+            <td>&#8364; <?= htmlspecialchars($product['verkoopprijs']) ?></td>
+            <td><?= htmlspecialchars($product['aantal']) ?></td>
+            <td><?= $product['ingebruik'] ? 'Ja' : 'Nee' ?></td>
+            <td><?= htmlspecialchars($product['afbeelding']) ?></td>
+            <td>
+              <!-- actions -->
+              <div class="table_actions | flex">
+                <!-- edit -->
+                <form action="/vakkenbeheer/edit" method="POST">
+                  <input type="hidden" name="" id="" value="">
+                  <button class="btn | crud edit">&#x270E;</button>
+                </form>
+                <!-- delete -->
+                <form action="/vakkenbeheer/delete" method="POST">
+                  <input type="hidden" name="" id="" value="">
+                  <button class="btn | crud delete">&#128465;</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+
+
+    <!-- ADD PRODUCT WITH MODAL -->
+    <div id="addProductModal" class="modal">
+      <div class="modal-content">
+
+        <div class="form_small | flow_small">
+          <h1 class="heading-1">Nieuw product <br>toevoegen</h1>
+          <form novalidate action="" method="POST" class="form" id="newProductForm" enctype="multipart/form-data">
+
+            <!-- <div class="form_group">
+              <label for="new_pname">Naam</label>
+              <input type="text" id="new_pname" name="new_pname" pattern="[A-Za-z_\-]+"
+                data-error="Geen cijfers toegestaan" placeholder="Kaas" required>
+              <span class="error_message" aria-live="polite"></span>
+            </div>
+
+            <div class="form_group">
+              <label for="new_pinkoopprijs">Inkoopprijs</label>
+              <input type="number" id="new_pinkoopprijs" name="new_pinkoopprijs" min="0" placeholder="1.50" required>
+              <span class="error_message" aria-live="polite"></span>
+            </div>
+
+            <div class="form_group">
+              <label for="new_pverkoopprijs">Verkoopprijs</label>
+              <input type="number" id="new_pverkoopprijs" name="new_pverkoopprijs" min="0" placeholder="3.00" required>
+              <span class="error_message" aria-live="polite"></span>
+            </div>
+
+            <div class="form_group">
+              <label for="new_pvoorraad">Voorraad</label>
+              <input type="number" id="new_pvoorraad" name="new_pvoorraad" min="0" placeholder="200" required>
+              <span class="error_message" aria-live="polite"></span>
+            </div> -->
+
+
+            <div class="form_group | span_all">
+              <label for="new_pimage">Afbeelding</label>
+              <input type="file" id="new_pimage" name="new_pimage" pattern="[A-Za-z_\-]+" data-error="Geen cijfers toegestaan"
+                placeholder="" required>
+              <span class="error_message" aria-live="polite"></span>
+            </div>
+
+            <button class="btn crud add" type="submit">Toevoegen</button>
+            <a class="btn crud delete close" href="product">Annuleren</a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<?php require_once "../src/includes/footer.php"; ?>

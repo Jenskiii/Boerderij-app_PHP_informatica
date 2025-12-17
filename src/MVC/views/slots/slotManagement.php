@@ -9,7 +9,8 @@
       <h1 class="heading-1 ">
         Vakken aanpassen
       </h1>
-      <p> Beheer de inhoud van de automaat. Voeg producten toe, pas voorraad aan of verwijder items.</p>
+      <p> Hier kun je de inhoud van de automaat beheren. Producten toevoegen, de voorraad aanpassen of een item
+        verwijderen.</p>
     </div>
   </section>
 
@@ -17,7 +18,7 @@
   <!-- TABLE -->
   <section class="container flow_small">
 
-    <form class="slotManagement_add-button" action="">
+    <form class="slotManagement_add-button" action="/product">
       <button class="btn primary" type="submit">Nieuw product toevoegen</button>
     </form>
 
@@ -34,7 +35,7 @@
 
       <!-- show alert when succer or failure -->
       <span class="slotManagement_alert | alert_box">Wijziging is succesvol!</span>
-      
+
       <tbody>
         <?php foreach ($slotsWithProducts as $vak): ?>
           <tr>

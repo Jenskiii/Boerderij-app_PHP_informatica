@@ -15,11 +15,10 @@
         <!-- product -->
         <div class="form_group | span_all">
           <label for="fname">Product</label>
-          <input type="text" value="<?= htmlspecialchars($selectedProduct["naam"]) ?>" readonly
-            id="edit_product_name" name="edit_product_name">
+          <input type="text" value="<?= htmlspecialchars($selectedProduct["naam"]) ?>" readonly id="edit_product_name"
+            name="edit_product_name">
           <input type="hidden" value="<?= htmlspecialchars($selectedProduct["product_id"]) ?>" id="edit_product_id"
             name="edit_product_id">
-          </select>
           <span class="error_message" aria-live="polite"></span>
         </div>
 
@@ -40,7 +39,10 @@
         </div>
 
 
-        <button class="btn primary | span_all" type="submit">Opslaan</button>
+        <button class="btn crud add" type="submit">Opslaan</button>
+        <!-- back button, dont need post? already checked by router -->
+        <a class="btn crud delete " href="/vakkenbeheer">Annuleren</a>
+
       </form>
 
     </div>
