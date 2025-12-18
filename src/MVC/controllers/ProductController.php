@@ -108,14 +108,14 @@ class ProductController
         // Get uploaded image input
         $uploadedImage = $_FILES['new_pimage'];
         // handle image upload
-        handleImageUpload($uploadedImage);
+        $imagePath = handleImageUpload($uploadedImage);
 
         // insert product details
         $this->productModel->createProduct(
             $newProductNaam,
             $newInkoopprijs,
             $newVerkooprijs,
-            getImagePath($uploadedImage),
+            $imagePath,
             $newVoorraad
         );
 

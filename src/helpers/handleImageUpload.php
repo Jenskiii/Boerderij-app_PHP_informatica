@@ -69,11 +69,14 @@ function handleImageUpload($uploadedImage)
   }
 
   // get file path / name
-  getImagePath($uploadedImage);
+  $destination = getImagePath($uploadedImage);
+
 
   // upload image to assets/images/uploaded/
-  if (!move_uploaded_file($uploadedImage['tmp_name'], getImagePath($uploadedImage))) {
+  if (!move_uploaded_file($uploadedImage['tmp_name'], $destination)) {
     header("Location: /product?error=move_upload");
     exit;
   }
+
+  return $destination;
 }
