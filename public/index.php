@@ -2,6 +2,8 @@
 session_start();
 // import users
 require_once "../src/helpers/auth.php";
+require_once "../src/helpers/alertMessageHandler.php";
+require_once "../src/helpers/handleImageUpload.php";
 require_once "../src/router/router.php";
 require_once "../src/MVC/controllers/HomeController.php";
 require_once "../src/MVC/controllers/ProductController.php";
@@ -67,7 +69,9 @@ $router->add("/vakkenbeheer/edit/safe", ["SlotManagementController", "slotManage
 // PRODUCT page
 $router->add("/product", ["ProductController", "product"], ["medewerker", "admin"]);
 $router->add("/product/buy", ["ProductController", "buyProduct"], ["public"]);
-$router->add("/product/{id}", ["ProductController", "selectedProduct"], ["medewerker", "admin"]);
+$router->add("/product/add_new_product", ["ProductController", "addProduct"], ["medewerker", "admin"]);
+$router->add("/product/edit/{id}", ["ProductController", "editProduct"], ["medewerker", "admin"]);
+$router->add("/product/delete/{id}", ["ProductController", "deleteProduct"], ["medewerker", "admin"]);
 
 
 // sends url to dispatch

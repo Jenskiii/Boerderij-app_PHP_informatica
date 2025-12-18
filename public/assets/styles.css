@@ -672,7 +672,7 @@ body {
 
 /* MODAL */
 .modal {
-  display: block; 
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -831,8 +831,8 @@ body {
 .slotManagement_add-button {
   justify-self: flex-end;
 }
-.slotManagement_alert.alert_box {
-  top: 9.6rem;
+.slotManagement_alert {
+  top: 11rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -843,4 +843,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+}
+.product_alert {
+  left: 50%;
+  transform: translateX(-50%);
 }

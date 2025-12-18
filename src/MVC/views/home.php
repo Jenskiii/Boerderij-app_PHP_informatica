@@ -65,7 +65,10 @@ require_once "../src/includes/header.php";
         <div class=" kassa">
 
           <!-- show alert when succer or failure -->
-          <span class="automaat_alert | alert_box">Veel plezier met uw product!</span>
+          <span class="automaat_alert | alert_box">
+            <?= htmlspecialchars(urlAlertMessages($_GET['error'] ?? $_GET['success'] ?? null)) ?>
+          </span>
+
 
           <!-- PIN AUTOMAAT -->
           <div class="pin_automaat | inactive">

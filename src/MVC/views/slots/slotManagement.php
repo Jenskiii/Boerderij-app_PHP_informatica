@@ -34,7 +34,9 @@
       </thead>
 
       <!-- show alert when succer or failure -->
-      <span class="slotManagement_alert | alert_box">Wijziging is succesvol!</span>
+      <span class="slotManagement_alert | alert_box"><?= htmlspecialchars(
+        urlAlertMessages($_GET['error'] ?? $_GET['success'] ?? null)
+      ) ?></span>
 
       <tbody>
         <?php foreach ($slotsWithProducts as $vak): ?>

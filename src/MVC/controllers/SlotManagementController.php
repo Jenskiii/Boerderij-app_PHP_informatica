@@ -60,12 +60,12 @@ class SlotManagementController
 
     // if error
     if (!$succesAdd || !$successStatus) {
-      header("Location: /vakkenbeheer?error");
+      header("Location: /vakkenbeheer?error=standard");
       exit;
     }
 
     // return
-    header("Location: /vakkenbeheer?success");
+    header("Location: /vakkenbeheer?success=add_product");
     exit;
   }
 
@@ -85,21 +85,20 @@ class SlotManagementController
 
     // if error
     if (!$success) {
-      header("Location: /vakkenbeheer?error");
+      header("Location: /vakkenbeheer?error=standard");
       exit;
     }
-    // else return with succes
-    header("Location: /vakkenbeheer?success");
+    // else return with success
+    header("Location: /vakkenbeheer?success=empty_vak");
     exit;
   }
 
   // EDIT VAK 
   public function slotManagementEditVak()
   {
-    if (!isLoggedIn() || !isPost()) {
-      header("Location: /");
-      exit;
-    }
+    // check if request is posted
+    isPosted();
+
     // post value
     $vakId = (int) ($_POST['vak_edit_id']);
 
@@ -118,10 +117,8 @@ class SlotManagementController
   // safe changes
   public function slotManagementEditSafe()
   {
-    if (!isLoggedIn() || !isPost()) {
-      header("Location: /");
-      exit;
-    }
+    // check if request is post
+    isPosted();
 
     // update vak with new value's
     $vakId = $_POST["edit_vak_id"];
@@ -134,7 +131,7 @@ class SlotManagementController
     $success = $this->productModel->updateProductStock($productId, $newStorage);
 
     if (!$success) {
-      header("Location: /vakkenbeheer?error");
+      header("Location: /vakkenbeheer?error=edit_fail");
       exit;
     }
 
@@ -147,7 +144,7 @@ class SlotManagementController
 
 
     // return
-    header("Location: /vakkenbeheer?success");
+    header("Location: /vakkenbeheer?success=edit_success");
     exit;
   }
 }

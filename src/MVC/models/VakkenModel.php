@@ -166,7 +166,7 @@ class VakkenModel
     }
 
     // terug naar home
-    header("Location: /?success");
+    header("Location: /?success=payment");
     exit;
   }
 }

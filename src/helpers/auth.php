@@ -22,9 +22,13 @@ function isAdmin()
   return isset($_SESSION["user"]) && $_SESSION["user"]["rol"] === "admin";
 }
 
+
 // check if request is POST
-function isPost()
+function isPosted(string $redirect = '/?error=no_post'): void
 {
-  return $_SERVER['REQUEST_METHOD'] === 'POST';
+  if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: $redirect");
+    exit;
+  }
 }
 

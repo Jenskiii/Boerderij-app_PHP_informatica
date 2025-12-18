@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Check of ?error in de URL staat
   if (window.location.search.includes("error")) {
     messageAlert.classList.add("error");
-    messageAlert.textContent = "Oeps, er is iets fout gegaan!";
 
     // Na 3 seconden verwijderen
     setTimeout(() => {

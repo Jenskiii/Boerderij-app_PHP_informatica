@@ -69,7 +69,7 @@ class ProductModel
     return $stmt->fetch();
   }
 
-  // update product stock
+  // UPDATE STOCK
   public function updateProductStock($id, $amount)
   {
     // als er voorraad is, start functie
@@ -82,7 +82,7 @@ class ProductModel
   }
 
 
-
+  //UPDATE STATUS
   public function updateProductStatus($id)
   {
     $stmt = $this->pdo->prepare("
@@ -93,4 +93,34 @@ class ProductModel
     ");
     return $stmt->execute([$id]);
   }
+
+
+  // CREATE NEW PRODUCT
+  public function createProduct($naam, $inkoopprijs, $verkoopprijs, $afbeelding, $voorraad)
+  {
+    // INSERT INTO PRODUCT TABLE
+    $stmt = $this->pdo->prepare("
+            INSERT INTO product (naam, inkoopprijs, verkoopprijs, afbeelding)
+            VALUES (?, ?, ?, ?)
+        ");
+    $stmt->execute([$naam, $inkoopprijs, $verkoopprijs, $afbeelding]);
+
+
+
+    // GET NEW PRODUCT ID
+    $productId = $this->pdo->lastInsertId();
+
+    // CREATE PRODUCT STOCK
+    $stmt = $this->pdo->prepare("
+      INSERT INTO voorraad (product_id, aantal)
+      VALUES (?, ?)
+    ");
+    
+    $stmt->execute([$productId, $voorraad]);
+
+    return true;
+  }
+
+
 }
+
