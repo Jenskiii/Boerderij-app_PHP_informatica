@@ -16,33 +16,33 @@
   </section>
 
 
-
   <!-- FILTER -->
   <section class="container">
     <div class="product_filter-wrapper">
       <form method="get">
-        <label for="product_filter">Filter producten:</label>
+        <label for="product_filter" class="heading-3">Filter producten:</label>
         <select name="product_filter" id="product_filter">
           <option value="all" <?= htmlspecialchars($filter === 'all' ? 'selected' : '') ?>>Alles</option>
           <option value="in_use" <?= htmlspecialchars($filter === 'in_use' ? 'selected' : '') ?>>In gebruik</option>
-          <option value="not_in_use" <?= htmlspecialchars($filter === 'not_in_use' ? 'selected' : '') ?>>Niet in gebruik</option>
+          <option value="not_in_use" <?= htmlspecialchars($filter === 'not_in_use' ? 'selected' : '') ?>>Niet in gebruik
+          </option>
           <option value="in_stock" <?= htmlspecialchars($filter === 'in_stock' ? 'selected' : '') ?>>Op voorraad</option>
           <option value="out_of_stock" <?= htmlspecialchars($filter === 'out_of_stock' ? 'selected' : '') ?>>Niet op
             voorraad</option>
         </select>
       </form>
 
-      <!-- show alert when succer or failure -->
+      <!-- show alert when success or failure -->
       <span class="product_alert | alert_box"><?= htmlspecialchars(
         urlAlertMessages($_GET['error'] ?? $_GET['success'] ?? null)
       ) ?></span>
 
 
-
-
-      <!-- OPENS MODAL -->
-      <button class="btn primary" id="openModalBtn">Product toevoegen</button>
+      <!-- OPENS add product MODAL -->
+      <button class="btn primary" id="openAddModalBtn" aria-label="Toggle add product modal">Product toevoegen</button>
     </div>
+
+
 
     <!-- PRODUCTEN TABEL -->
     <table class="table">
@@ -75,14 +75,17 @@
               <div class="table_actions | flex">
                 <!-- edit -->
                 <form action="/product/edit/<?= htmlspecialchars($product['product_id']) ?>" method="POST">
-                  <input type="hidden" name="" id="" value="">
+                  <input type="hidden" name="edit_product_id" id="edit_product_id"
+                    value="<?= htmlspecialchars($product['product_id']) ?>">
                   <button class="btn | crud edit">&#x270E;</button>
                 </form>
-                <!-- delete -->
-                <form action="/product/delete/<?= htmlspecialchars($product['product_id']) ?>" method="POST">
-                  <input type="hidden" name="" id="" value="">
-                  <button class="btn | crud delete">&#128465;</button>
-                </form>
+
+
+
+                <!-- NIET IN GEBRUIK ZIE NOTES -->
+                <!-- delete / opens delete modal-->
+                <!-- <button class="openModalDeleteBtn | btn crud delete" id="<?= htmlspecialchars($product['product_id']) ?>"
+                  aria-label="Toggle delete product modal">&#128465;</button> -->
               </div>
             </td>
           </tr>
@@ -97,7 +100,7 @@
 
         <div class="form_small | flow_small">
           <h1 class="heading-1">Nieuw product <br>toevoegen</h1>
-          <form novalidate action="/product/add_new_product" method="POST" class="form" id="newProductForm"
+          <form novalidate action="/product/add_new_product" method="POST" class="form" id="new_product_form"
             enctype="multipart/form-data">
 
             <div class="form_group">
@@ -136,12 +139,30 @@
 
 
             <button class="btn crud add" type="submit">Toevoegen</button>
-            <a class="btn crud delete close" href="product">Annuleren</a>
+            <span class="btn crud delete close">Annuleren</span>
           </form>
 
         </div>
       </div>
     </div>
+
+
+
+    <!-- NIET INGEBRUIK ZIE NOTES -->
+    <!-- DELETE PRODUCT MODAL -->
+    <!-- <div id="deleteProductModal" class="modal">
+      <div class="form_small flow_small">
+        <h2 class="heading-2">Weet je zeker dat je dit product wil verwijderen?
+        </h2>
+        <form action="/product/delete" method="POST" class="product_delete-actions">
+          <input type="hidden" name="deleteProductId" id="deleteProductInput" value="">
+          <button class="btn | crud add" type="submit">Ja</button>
+          <span class="btn | crud delete close">Nee</span>
+        </form>
+      </div>
+    </div> -->
+
+
   </section>
 
 </main>

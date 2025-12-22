@@ -4,8 +4,8 @@ class LoginController
 {
   public function loginForm(): void
   {
-    // JS link
-    $jsLink = "form.js";
+    // JS LINK
+    $jsLinks = ["form.js"];
 
     require_once "../src/MVC/views/login.php";
   }
@@ -53,9 +53,9 @@ class LoginController
     // delete session data
     session_unset();
     // destroy session
-    session_destroy(); 
+    session_destroy();
     // redirect to home
-    header("Location: /"); 
+    header("Location: /");
     exit;
   }
 }

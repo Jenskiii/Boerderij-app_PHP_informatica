@@ -21,21 +21,6 @@ class ProductModel
     return $stmt->fetchAll();
   }
 
-
-
-  // SINGLE PRODUCT
-  // fetch product dat overkomt met id
-  public function getSpecificProduct($id)
-  {
-    // query
-    $stmt = $this->pdo->prepare("SELECT * FROM product WHERE product_id = ?");
-    $stmt->execute([$id]);
-
-    $product = $stmt->fetch();
-    // return product else null
-    return $product ?: null;
-  }
-
   // get products that are in stock
   public function getAllProductsInStock()
   {
@@ -57,6 +42,23 @@ class ProductModel
         INNER JOIN voorraad  ON product.product_id = voorraad.product_id
     ");
     return $stmt->fetchAll();
+  }
+
+
+
+
+
+  // SINGLE PRODUCT
+  // fetch product dat overkomt met id
+  public function getSpecificProduct($id)
+  {
+    // query
+    $stmt = $this->pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+    $stmt->execute([$id]);
+
+    $product = $stmt->fetch();
+    // return product else null
+    return $product ?: null;
   }
 
   // check product stock
@@ -81,7 +83,6 @@ class ProductModel
     return $stmt->execute([$amount, $id, $amount]);
   }
 
-
   //UPDATE STATUS
   public function updateProductStatus($id)
   {
@@ -93,7 +94,6 @@ class ProductModel
     ");
     return $stmt->execute([$id]);
   }
-
 
   // CREATE NEW PRODUCT
   public function createProduct($naam, $inkoopprijs, $verkoopprijs, $afbeelding, $voorraad)
@@ -115,12 +115,43 @@ class ProductModel
       INSERT INTO voorraad (product_id, aantal)
       VALUES (?, ?)
     ");
-    
+
     $stmt->execute([$productId, $voorraad]);
 
     return true;
   }
 
+  public function updateProductPrice($productId, $inkoopprijs, $verkoopprijs)
+  {
+    // INSERT INTO PRODUCT TABLE
+    $stmt = $this->pdo->prepare("
+            UPDATE product SET
+            inkoopprijs = ?, 
+            verkoopprijs = ?
+            WHERE product_id = ?
+        ");
 
+    $stmt->execute([$inkoopprijs, $verkoopprijs, $productId]);
+    return true;
+  }
+
+
+
+
+
+
+  // NIET INGEBRUIK
+  // WEL LATEN STAAN VOOR ALS HET IN DE TOEKOMST MISSCHIEN NODIG IS
+  // // DELETE PRODUCT
+  // public function deleteProduct($id)
+  // {
+  //   $stmt = $this->pdo->prepare("
+  //       DELETE FROM product WHERE product_id = ?
+  //     ");
+
+  //   $stmt->execute([$id]);
+
+  //   return true;
+  // }
 }
 

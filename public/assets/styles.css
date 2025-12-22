@@ -755,9 +755,11 @@ body {
 .section_gap > section + section {
   margin-top: 5rem;
 }
-
 .text_center {
   text-align: center;
+}
+.bg_red{
+  background-color: hsl(var(--clr-red));
 }
 
 /* //////////////////// */
@@ -847,4 +849,14 @@ body {
 .product_alert {
   left: 50%;
   transform: translateX(-50%);
+}
+.product_delete-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* STATISTICS */
+.statistics_form{
+  margin-bottom: 1rem;
 }

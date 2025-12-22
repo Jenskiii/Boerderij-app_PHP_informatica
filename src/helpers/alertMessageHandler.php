@@ -31,6 +31,7 @@ function urlAlertMessages($message)
     'add_product' => 'Product is succesvol toegevoegd!',
     'empty_vak' => 'Vak is geleegd!',
     'edit_success' => 'Wijziging gelukt!',
+    'product_delete' => 'Product verwijdert!'
   ];
 
   // Check eerst errorMessages

@@ -98,6 +98,9 @@ class SlotManagementController
   {
     // check if request is posted
     isPosted();
+    
+    // JS LINK
+    $jsLinks = ["form.js"];
 
     // post value
     $vakId = (int) ($_POST['vak_edit_id']);
@@ -123,7 +126,7 @@ class SlotManagementController
     // update vak with new value's
     $vakId = $_POST["edit_vak_id"];
     $productId = $_POST["edit_product_id"];
-    $newAmount = (int) $_POST['edit_product_amount'];
+    $newAmount = (int) $_POST['edit_vak_amount'];
     $newStorage = $_POST['edit_product_storage'];
 
 

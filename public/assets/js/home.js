@@ -30,7 +30,6 @@ function toggleActiveClass(component, setActive = true) {
     component.classList.remove("active");
   }
 }
-
 // reset display
 function resetPinAutomaat() {
   // remove classes / shrink component
@@ -130,7 +129,6 @@ pinAccept.addEventListener("click", (e) => {
       });
     }, 2500);
   } else {
-    
     // als geen voorraad, show error message + msg on display
     paymentAlert.classList.add("error");
     paymentAlert.textContent = "Vak bevat geen product!";
@@ -142,5 +140,3 @@ pinAccept.addEventListener("click", (e) => {
     }, 2500);
   }
 });
-
-

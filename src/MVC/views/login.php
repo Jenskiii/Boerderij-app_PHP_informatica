@@ -5,7 +5,7 @@
   <section>
     <div class="form_small | flow_small">
       <h1 class="heading-1">Login</h1>
-      <form novalidate action="/login/validate" method="POST" class="form" id="loginForm">
+      <form novalidate action="/login/validate" method="POST" class="form" id="login_form">
 
         <!-- Wrong login show error -->
         <?php if (isset($_SESSION['login_error'])): ?>
@@ -17,14 +17,14 @@
 
         <!-- username -->
         <div class="form_group | span_all">
-          <label for="fname">Gebruikersnaam</label>
+          <label for="login_username">Gebruikersnaam</label>
           <input type="text" id="login_username" name="login_username" pattern="[A-Za-z_\-]+"
             data-error="Geen cijfers toegestaan" placeholder="John" required autofocus>
           <span class="error_message" aria-live="polite"></span>
         </div>
         <!-- password -->
         <div class="form_group | span_all">
-          <label for="email">Wachtwoord</label>
+          <label for="login_password">Wachtwoord</label>
           <input type="password" id="login_password" name="login_password" placeholder="********" required>
           <span class="error_message" aria-live="polite"></span>
         </div>

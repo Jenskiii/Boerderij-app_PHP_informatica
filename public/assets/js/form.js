@@ -1,9 +1,30 @@
 const forms = document.querySelectorAll("form");
+const productFilter = document.getElementById("product_filter") ?? null;
+const statisticsFilter = document.getElementById("statistics_filter") ?? null;
+// //////////////////
+// FILTER WITH SELECT FORM
+/////////////////////
+function filterWithSelect(filter) {
+  filter.addEventListener("change", function () {
+    this.form.submit();
+  });
+}
 
+// filter Product page select
+
+if (productFilter) {
+  filterWithSelect(productFilter);
+}
+if (statisticsFilter) {
+  filterWithSelect(statisticsFilter);
+}
+
+// //////////////////
+// HANDLE FORM
+//////////////////////
 // loop through all forms
-forms.forEach((form) => {
 
-  
+forms.forEach((form) => {
   // select all inputs + textarea
   const fields = form.querySelectorAll("input, textarea");
 
@@ -12,7 +33,6 @@ forms.forEach((form) => {
     // grab error message
     const errorMessage = field.parentElement.querySelector(".error_message");
 
-    console.log(field.parentElement, errorMessage);
     if (!errorMessage) return true;
     // input not valid show error
     if (!field.value) {

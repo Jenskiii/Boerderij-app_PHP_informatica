@@ -10,7 +10,9 @@ class ProductController
     }
 
 
-    // PAGE INFORMATION
+    // //////////////////
+    // MAIN PRODUCT
+    /////////////////////
     public function product(): void
     {
         // JS LINK
@@ -37,27 +39,68 @@ class ProductController
                     return true; // alles
             }
         }
-
         require_once "../src/MVC/views/product/products.php";
     }
 
 
+
+
+    // //////////////////
     // EDIT PRODUCT
+    /////////////////////
     public function editProduct(): void
     {
+        isPosted("/product");
+        // JS LINK
+        $jsLinks = ["form.js"];
+
+        $productId = $_POST['edit_product_id'];
+        $product = $this->productModel->getSpecificProduct($productId);
+        $voorraad = $this->productModel->getProductStock($productId);
 
         require_once "../src/MVC/views/product/editProduct.php";
     }
 
-    // DELETE PRODUCT
-    public function deleteProduct(): void
-    {
 
+    // //////////////////
+    // SAFE EDIT PRODUCT
+    /////////////////////
+    public function safeEditProduct(): void
+    {
+        // check if posted
+        isPosted("/product");
+
+        // set variables
+        $productId = $_POST['edit_pid'];
+        $editInkoopprijs = $_POST['edit_pinkoopprijs'];
+        $editVerkooprijs = $_POST['edit_pverkoopprijs'];
+        $editVoorraad = $_POST['edit_pvoorraad'];
+
+        // insert product details
+        $productSuccess = $this->productModel->updateProductPrice(
+            $productId,
+            $editInkoopprijs,
+            $editVerkooprijs,
+        );
+
+        $voorraadSuccess = $this->productModel->updateProductStock($productId, $editVoorraad);
+
+
+        //SUCCES return to product page 
+        if ($voorraadSuccess && $productSuccess) {
+            header("Location: /product?success=change");
+            exit;
+        }
+
+        // ERROR
+        header("Location: /product?error=standard");
+        exit;
     }
 
 
-
-    // BUY PRODUCTs
+    // //////////////////
+    // BUY PRODUCT
+    /////////////////////
     public function buyProduct()
     {
         // check if request is post
@@ -71,7 +114,9 @@ class ProductController
     }
 
 
+    // //////////////////
     // ADD NEW PRODUCT
+    /////////////////////
     public function addProduct()
     {
         // check if request is post
@@ -104,7 +149,6 @@ class ProductController
         }
 
 
-
         // Get uploaded image input
         $uploadedImage = $_FILES['new_pimage'];
         // handle image upload
@@ -123,4 +167,43 @@ class ProductController
         header("Location: /product?success=add_product");
         exit;
     }
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------------------------
+    // NIET INGEBRUIK VERWIJDERT TEVEEL DATA, ZOALS ORDERS 
+    // WEL LATEN STAAN VOOR ALS HET IN DE TOEKOMST MISSCHIEN NODIG IS
+    // //////////////////
+    // DELETE PRODUCT
+    /////////////////////
+    // public function deleteProduct(): void
+    // {
+    //     // check if posted else return
+    //     isPosted("/product");
+
+    //     // QUERY
+    //     if (isset($_POST['deleteProductId'])) {
+    //         $productId = (int) $_POST['deleteProductId'];
+
+    //         $succes = $this->productModel->deleteProduct($productId);
+
+    //         // RETURN WITH SUCCESS
+    //         if ($succes) {
+    //             header("Location: /product?success=product_delete");
+    //             exit;
+    //         }
+    //     }
+
+    //     // ELSE RETURN WITH ERROR
+    //     header("Location: /product?error=standard");
+    //     exit;
+    // }
+
 }

@@ -27,7 +27,7 @@ function isAdmin()
 function isPosted(string $redirect = '/?error=no_post'): void
 {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: $redirect");
+    header("Location: $redirect?error=no_post");
     exit;
   }
 }

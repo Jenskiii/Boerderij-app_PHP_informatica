@@ -71,7 +71,8 @@ $router->add("/product", ["ProductController", "product"], ["medewerker", "admin
 $router->add("/product/buy", ["ProductController", "buyProduct"], ["public"]);
 $router->add("/product/add_new_product", ["ProductController", "addProduct"], ["medewerker", "admin"]);
 $router->add("/product/edit/{id}", ["ProductController", "editProduct"], ["medewerker", "admin"]);
-$router->add("/product/delete/{id}", ["ProductController", "deleteProduct"], ["medewerker", "admin"]);
+$router->add("/product/delete", ["ProductController", "deleteProduct"], ["medewerker", "admin"]);
+$router->add("/product/safe_edit", ["ProductController", "safeEditProduct"], ["medewerker", "admin"]);
 
 
 // sends url to dispatch
