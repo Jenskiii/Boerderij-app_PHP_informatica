@@ -2,12 +2,12 @@
 
 <main class="container">
 
-  <section>
+  <section aria-labelledby="slotedit_title">
     <div class="form_small | flow_small">
 
-      <h1 class="heading-1">Vak <?= htmlspecialchars($selectedVak["positie"]) ?> bewerken</h1>
+      <h1 class="heading-1" id="slotedit_title">Vak <?= htmlspecialchars($selectedVak["positie"]) ?> bewerken</h1>
 
-      <form novalidate action="/vakkenbeheer/edit/safe" method="POST" class="form" id="edit_vak_form">
+      <form action="/vakkenbeheer/edit/safe" method="POST" class="form" id="edit_vak_form">
         <!-- hidden vak id value -->
         <input type="hidden" value="<?= htmlspecialchars($selectedVak["vak_id"]) ?>" id="edit_vak_id"
           name="edit_vak_id">

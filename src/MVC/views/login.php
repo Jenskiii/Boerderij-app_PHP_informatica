@@ -2,15 +2,15 @@
 
 
 <main class="container">
-  <section>
+  <section aria-labelledby="login_title">
     <div class="form_small | flow_small">
-      <h1 class="heading-1">Login</h1>
-      <form novalidate action="/login/validate" method="POST" class="form" id="login_form">
+      <h1 class="heading-1" id="login_title">Login</h1>
+      <form action="/login/validate" method="POST" class="form" id="login_form">
 
         <!-- Wrong login show error -->
         <?php if (isset($_SESSION['login_error'])): ?>
           <div class="form_group | span_all">
-            <span class="error_message"><?= $_SESSION['login_error'] ?></span>
+            <span class="error_message"><?= htmlspecialchars($_SESSION['login_error']) ?></span>
           </div>
           <?php unset($_SESSION['login_error']); ?>
         <?php endif; ?>

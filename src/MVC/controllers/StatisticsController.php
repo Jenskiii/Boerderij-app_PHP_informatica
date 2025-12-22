@@ -26,7 +26,7 @@ class StatisticsController
         function hasCurrency($array, $key, $value)
         {
             if (in_array($key, $array)) {
-                return "&#8364; " . $value;
+                return "&#8364; " . htmlspecialchars($value);
             }
 
             return $value;

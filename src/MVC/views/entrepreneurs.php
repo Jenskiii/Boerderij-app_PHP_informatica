@@ -3,30 +3,29 @@
 <main class="container main_bg section_gap">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <figure class="decoration_left">
-    <img src="assets/images/peacock.png" alt="varken in cartoon style">
+  <figure class="decoration_left" aria-hidden="true">
+    <img src="/assets/images/peacock.png" alt="pauw in cartoon style">
   </figure>
   <!-- decoratie dier rechts -->
-  <figure class="decoration_right">
-    <img src="assets/images/peacock.png" alt="varken in cartoon style">
+  <figure class="decoration_right" aria-hidden="true">
+    <img src="/assets/images/peacock.png" alt="pauw in cartoon style">
   </figure>
 
-  
+
   <!-- SECTION START-->
-  <section class="ondernemers">
-    <div class="container section_gap">
-      <!-- header -->
-      <div class="page_title">
-        <h1 class="heading-1 ">
-          Aanmelden voor de automaat
-        </h1>
-        <p>
-          Kinderboerderij 't Erf biedt lokale ondernemers uit Waalwijk en omgeving de kans
-          om hun producten aan te bieden via onze <a href="/" class="navigation_link">boerderij-automaat</a>.
-          Zo brengen we samen de boerderij, de regio en het ambacht dichter bij onze bezoekers.
-        </p>
-      </div>
+  <section class="ondernemers" aria-labelledby="ondernemers_title">
+    <!-- header -->
+    <div class="page_title">
+      <h1 class="heading-1" id="ondernemers_title">
+        Aanmelden voor de automaat
+      </h1>
+      <p>
+        Kinderboerderij 't Erf biedt lokale ondernemers uit Waalwijk en omgeving de kans
+        om hun producten aan te bieden via onze <a href="/" class="navigation_link">boerderij-automaat</a>.
+        Zo brengen we samen de boerderij, de regio en het ambacht dichter bij onze bezoekers.
+      </p>
     </div>
+
   </section>
 
 
@@ -84,7 +83,7 @@
 
     <!-- LINK TO CONTACT-->
     <a href="/contact" class="ondernemers_link | navigation_link text_center">
-      Neem contact op voor de aanmelding
+      Neem contact op
     </a>
   </section>
 

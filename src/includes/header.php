@@ -33,6 +33,7 @@
           <img class="duck" src="/assets/images/duck.png" alt="yellow duck">
           <li><a href="/over-ons" class="header_nav-link">Over ons</a></li>
           <li><a href="/ondernemers" class="header_nav-link">Ondernemers</a></li>
+
           <!-- hide page for non admins -->
           <?php if (isAdmin()): ?>
             <li><a href="/statistieken" class="header_nav-link">Statistieken</a></li>
@@ -43,7 +44,8 @@
           <li><a href="/contact" class="btn primary">Contact</a></li>
         </ul>
       </nav>
-
+        
+      <!-- LOGOUT BUTTON -->
       <?php if (isLoggedIn()): ?>
         <form action="/logout" method="POST" class="header_profile">
           <p><?= htmlspecialchars(user()['rol'] ?? '') ?></p>

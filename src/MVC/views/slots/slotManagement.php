@@ -3,10 +3,10 @@
 <main class="container main_bg flow">
 
   <!-- TITLE -->
-  <section class="ondernemers">
+  <section aria-labelledby="slotmanagement_title">
     <!-- header -->
     <div class="page_title">
-      <h1 class="heading-1 ">
+      <h1 class="heading-1" id="slotmanagement_title">
         Vakken aanpassen
       </h1>
       <p> Hier kun je de inhoud van de automaat beheren. Producten toevoegen, de voorraad aanpassen of een item
@@ -114,7 +114,7 @@
 
                 <!-- add button -->
                 <td>
-                  <button class="btn | crud add">&#x2B;</button>
+                  <button class="btn | crud add full_width">&#x2B;</button>
                 </td>
               </form>
 

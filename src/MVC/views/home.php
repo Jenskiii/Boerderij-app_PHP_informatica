@@ -5,8 +5,8 @@ require_once "../src/includes/header.php";
 
 <main>
 
-  <section class="home_hero | container">
-    <h1 class="home_title | heading-1">Een koe vol plezier, test de automaat nu!</h1>
+  <section class="home_hero | container" aria-labelledby="home_title">
+    <h1 class="home_title | heading-1" id="home_title">Een koe vol plezier, test de automaat nu!</h1>
   </section>
 
 

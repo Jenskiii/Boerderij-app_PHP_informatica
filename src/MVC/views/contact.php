@@ -3,28 +3,26 @@
 <main class="container main_bg section_gap">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <figure class="decoration_left">
-    <img src="assets/images/goat.png" alt="varken in cartoon style">
+  <figure class="decoration_left" aria-hidden="true">
+    <img src="/assets/images/goat.png" alt="geit in cartoon style">
   </figure>
-    <!-- decoratie dier rechts -->
-  <figure class="decoration_right">
-    <img src="assets/images/goat.png" alt="varken in cartoon style">
+  <!-- decoratie dier rechts -->
+  <figure class="decoration_right" aria-hidden="true">
+    <img src="/assets/images/goat.png" alt="geit in cartoon style">
   </figure>
 
 
   <!-- TITLE -->
-  <section>
-    <div class="container">
-      <div class="page_title">
-        <h1 class="heading-1">
-          Neem contact op
-        </h1>
-        <p>
-          Heb je een vraag of wil je meer weten over Kinderboerderij 't Erf of de boerderij-automaat?
-          Vul hieronder het formulier in of neem direct contact met ons op.
-          We horen graag van je!
-        </p>
-      </div>
+  <section aria-labelledby="contact_title">
+    <div class="page_title">
+      <h1 class="heading-1" id="contact_title">
+        Neem contact op
+      </h1>
+      <p>
+        Heb je een vraag of wil je meer weten over Kinderboerderij 't Erf of de boerderij-automaat?
+        Vul hieronder het formulier in of neem direct contact met ons op.
+        We horen graag van je!
+      </p>
     </div>
   </section>
 
@@ -42,9 +40,8 @@
         naar de email van de boerderij met JS, zelf vind ik dat dit buiten de scope van het project valt
         vandaar dat ik niks met het form gedaan heb.
       -->
-
       <!-- FORM -->
-      <form novalidate class="form" id="contactForm">
+      <form method="post" action="/" class="form" id="contactForm">
         <!-- fname -->
         <div class="form_group">
           <label for="fname">Voornaam</label>
@@ -83,30 +80,26 @@
 
         <button class="btn primary | span_all" type="submit">Neem contact op</button>
       </form>
+    </div>
   </section>
 
-  <section class="container flow">
+  <section class="container flow_small">
     <!-- CONTACT INFO -->
 
     <h2 class="heading-2">Contactgegevens</h2>
     <div class="contact_details">
 
-      <div>
-        <h3 class="heading-3">Kinderboerderij 't Erf</h3>
-        <ul>
-          <li><strong>Straat: </strong>Mendelssohnstraat 6</li>
-          <li><strong>Postcode: </strong>5144 GG Waalwijk</li>
-        </ul>
-      </div>
+      <address>
+        <strong class="heading-3">Kinderboerderij 't Erf</strong><br>
+        <strong>Straat: </strong>Mendelssohnstraat 6<br>
+        <strong>Postcode: </strong>5144 GG Waalwijk
+      </address>
 
-      <div>
-        <h3 class="heading-3">Contact</h3>
-        <ul>
-          <li><strong>Telefoon: </strong> 0416 - 12 34 56 78</li>
-          <li><strong>Email: </strong> <a href="mailto:info@boerderij.nl"
-              class="navigation_link">info@kinderboerderij.nl</a></li>
-        </ul>
-      </div>
+      <address>
+        <strong class="heading-3">Contact</strong><br>
+        <strong>Telefoon: </strong> 0416 - 12 34 56 78<br>
+        <strong>Email: </strong><a href="mailto:info@boerderij.nl" class="navigation_link">info@kinderboerderij.nl</a>
+      </address>
       <div>
         <h3 class="heading-3">Openingstijden</h3>
         <ul>

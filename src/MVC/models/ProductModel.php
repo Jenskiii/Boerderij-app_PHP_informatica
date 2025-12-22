@@ -79,7 +79,7 @@ class ProductModel
       UPDATE voorraad 
       SET aantal = ?
       WHERE product_id = ?
-      AND ? >= 0 ");
+      AND ? > 0 ");
     return $stmt->execute([$amount, $id, $amount]);
   }
 

@@ -98,7 +98,7 @@ class SlotManagementController
   {
     // check if request is posted
     isPosted();
-    
+
     // JS LINK
     $jsLinks = ["form.js"];
 
@@ -126,8 +126,8 @@ class SlotManagementController
     // update vak with new value's
     $vakId = $_POST["edit_vak_id"];
     $productId = $_POST["edit_product_id"];
-    $newAmount = (int) $_POST['edit_vak_amount'];
-    $newStorage = $_POST['edit_product_storage'];
+    $newVakAmount = (int) $_POST['edit_vak_amount'];
+    $newStorage = $_POST['edit_vak_storage'];
 
 
     // update values
@@ -139,10 +139,10 @@ class SlotManagementController
     }
 
     // if new amount = 0 empty vak, else update status to 1
-    if ($newAmount === 0) {
+    if ($newVakAmount === 0) {
       $this->vakModel->emptyVak($vakId);
     } else {
-      $this->vakModel->updateVakStorage($newAmount, $vakId);
+      $this->vakModel->updateVakStorage($newVakAmount, $vakId);
     }
 
 

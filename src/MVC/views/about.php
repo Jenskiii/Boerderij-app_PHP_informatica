@@ -3,31 +3,29 @@
 <main class="container main_bg section_gap">
   <!-- DECORATIE DIEREN ZIJKANTEN -->
   <!-- decoratie dier links -->
-  <figure class="decoration_left">
+  <figure class="decoration_left" aria-hidden="true">
     <img src="assets/images/pig.png" alt="varken in cartoon style">
   </figure>
   <!-- decoratie dier rechts -->
-  <figure class="decoration_right">
+  <figure class="decoration_right" aria-hidden="true">
     <img src="assets/images/pig.png" alt="varken in cartoon style">
   </figure>
 
 
   <!-- TITLE -->
-  <section>
-    <div class="container">
-      <!-- HEADER -->
-      <div class="page_title">
-        <h1 class="heading-1">
-          Over Kinderboerderij 't Erf
-        </h1>
-        <p>
-          Kinderboerderij 't Erf is een gezellige ontmoetingsplek in Waalwijk waar jong en oud kunnen genieten van
-          dieren,
-          natuur en het boerenleven.
-          Al jaren zetten onze vrijwilligers en medewerkers zich in om bezoekers een warm welkom te geven tussen de
-          geiten, konijnen, kippen en ezels.
-        </p>
-      </div>
+  <section class="container" aria-labelledby="about_title">
+    <!-- HEADER -->
+    <div class="page_title">
+      <h1 class="heading-1" id="about_title">
+        Over Kinderboerderij 't Erf
+      </h1>
+      <p>
+        Kinderboerderij 't Erf is een gezellige ontmoetingsplek in Waalwijk waar jong en oud kunnen genieten van
+        dieren,
+        natuur en het boerenleven.
+        Al jaren zetten onze vrijwilligers en medewerkers zich in om bezoekers een warm welkom te geven tussen de
+        geiten, konijnen, kippen en ezels.
+      </p>
     </div>
   </section>
 
@@ -75,14 +73,17 @@
 
 
   <!-- INFO -->
-  <section>
-    <div class="text_center flow_small">
-      <h2 class="heading-2">Bezoek ons!</h2>
-      <p>
-        Kinderboerderij 't Erf, Mendelssohnstraat 6, Waalwijk.<br>
-        Geopend van maandag t/m zondag.<br>
-        Kom gezellig langs voor de dieren, een praatje en een stukje Waalwijkse gastvrijheid.
-      </p>
+  <section class="text_center flow_small">
+    <h2 class="heading-2">Bezoek ons!</h2>
+    <div class="about_address">
+      <p> Geopend van maandag t/m zondag.<br>
+        Kom gezellig langs voor de dieren, een praatje en een stukje Waalwijkse gastvrijheid.</p>
+      <address>
+        <strong class="heading-3">Stad:</strong> Waalwijk<br>
+        <strong class="heading-3">Straat:</strong> Mendelssohnstraat 6<br>
+        <strong class="heading-3">Postcode:</strong> 5050AP
+      </address>
+
     </div>
   </section>
 </main>
