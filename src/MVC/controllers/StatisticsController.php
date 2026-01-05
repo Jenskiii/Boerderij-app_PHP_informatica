@@ -18,7 +18,7 @@ class StatisticsController
 
         $jsLinks = ["form.js"];
         $statisticsFilter = $_GET['statistics_filter'] ?? 'voorraad';
-        $currencyColumns = ['omzet', 'brutowinst'];
+        $currencyColumns = ['omzet', 'brutowinst', 'inkoopprijs', 'voorraad_waarde'];
 
         // Check's if key is inside currencyColumns
         // yes = print EURO sign + value
@@ -42,10 +42,17 @@ class StatisticsController
                 $data = $this->statisticsModel->getSoldProducts();
                 $headers = ['Product', 'Aantal Verkocht', 'In assortiment sinds'];
                 break;
-
             case 'winst':
                 $data = $this->statisticsModel->getProfit();
                 $headers = ['Product', 'Aantal verkocht', 'Omzet', 'Brutowinst'];
+                break;
+            case 'verkoopfrequentie':
+                $data = $this->statisticsModel->getSalesFrequency();
+                $headers = ['Product', 'Aantal bestellingen', 'Eerste verkoop', 'Laatste verkoop'];
+                break;
+            case 'voorraadwaarde':
+                $data = $this->statisticsModel->getStockValue();
+                $headers = ['Product', 'Aantal op voorraad', 'Inkoopprijs', 'Totale voorraadwaarde'];
                 break;
 
             default:

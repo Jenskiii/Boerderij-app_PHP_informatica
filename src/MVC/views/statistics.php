@@ -37,6 +37,12 @@
           <option value="verkocht" <?= $statisticsFilter === 'verkocht' ? 'selected' : '' ?>>Verkochte
             producten</option>
           <option value="winst" <?= $statisticsFilter === 'winst' ? 'selected' : '' ?>>Winst</option>
+          <option value="verkoopfrequentie" <?= $statisticsFilter === 'verkoopfrequentie' ? 'selected' : '' ?>>
+            Verkoopfrequentie
+          </option>
+          <option value="voorraadwaarde" <?= $statisticsFilter === 'voorraadwaarde' ? 'selected' : '' ?>>Product
+            voorraadwaarde
+          </option>
         </select>
       </fieldset>
     </form>

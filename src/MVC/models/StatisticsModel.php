@@ -65,4 +65,38 @@ class StatisticsModel
     return $stmt->fetchAll();
   }
 
+
+  // SHOW REVENUE PER DAY
+  public function getSalesFrequency()
+  {
+    $stmt = $this->pdo->query("    
+      SELECT 
+      p.naam AS product,
+      COUNT(v.order_id) AS aantal_bestellingen,
+      MIN(v.verkoop_datum) AS eerste_verkoop,
+      MAX(v.verkoop_datum) AS laatste_verkoop
+      FROM verkooporders v
+      JOIN product p ON v.product_id = p.product_id
+      GROUP BY p.product_id, p.naam
+      ORDER BY aantal_bestellingen DESC"
+    );
+    return $stmt->fetchAll();
+  }
+
+  // SHOW REVENUE PER DAY
+  public function getStockValue()
+  {
+    $stmt = $this->pdo->query("    
+      SELECT 
+      p.naam AS product,
+      v.aantal AS voorraad_aantal,
+      p.inkoopprijs,
+      (v.aantal * p.inkoopprijs) AS voorraad_waarde
+      FROM voorraad v
+      JOIN product p ON v.product_id = p.product_id
+      ORDER BY voorraad_waarde DESC"
+    );
+    return $stmt->fetchAll();
+  }
+
 }
